@@ -43,18 +43,22 @@
 					<option value="true">yes</option>
 				</select>
 			</td>
+			<td>
+				<button type="button" onclick="NextVec()">Next Step</button>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="4">
 				xMax : <input type="text" id="xmax" value="3"> xMin : <input type="text" id="xmin" value="-3"> yMax : <input type="text" id="ymax" value="3"> YMin : <input type="text" id="ymin" value="-3">
 			</td>
 			<td>
-				<button type="button" onclick="updateGraph()">update graph</button>
+				<button type="button" onclick="PrevVec()">Previous Step</button>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="4">
 				startX : <input type="text" id="startx" value="0"> startY : <input type="text" id="starty" value="0"> startZ : <input type="text" id="startz" value="0">endX : <input type="text" id="endx" value="0"> endY : <input type="text" id="endy" value="0"> endZ : <input type="text" id="endz" value="0">
+				<button type="button" onclick="updateGraph()">update Graph</button>
 			</td>
 		</tr>
 	</form>
@@ -69,42 +73,47 @@
     var three = mathbox.three;
     three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
 
-	var graphData, view;
+	var view;
 	
 	var functionText = "sin(x^2+y^2)";
 	
 	var pointText = "(1,1)";
-	
+	var currVecNum=0;
+	var points=[];
 	var a = 1, b = 1;
 	var	xMin = -3, xMax = 3, yMin = -3,	yMax = 3, zMin = -3, zMax = 3;
-	
 	var zAutofit = true;
 	
 	// start of updateGraph function ==============================================================
 	var updateGraphFunc = function() {
-
+		currVecNum=0;
+		points=[];
 		var hashParams = window.location.hash;
 		if(hashParams.length != 0) {
 			hashParams = hashParams.substr(1).split('&');// substr(1) to remove the `#`
 			for (var i = 0; i < hashParams.length; i++) {
 				var p = hashParams[i].split('=');
-				document.getElementById(p[0]).value = decodeURIComponent(p[1]);
+				if (p[0]=="points"){
+					points=p[1].split('|');
+				}else {
+					document.getElementById(p[0]).value = decodeURIComponent(p[1]);
+				}
 			}
 		}
 		var zFunc = Parser.parse(document.getElementById("func").value.toLowerCase()).toJSFunction(['x', 'y']);
 		var graphColorStyle = document.getElementById("style").value.toLowerCase();
 		var wireframe = document.getElementById("wireframe").value.toLowerCase();
 		var shadow = document.getElementById("shadow").value.toLowerCase();
-		var xMax = parseInt(document.getElementById("xmax").value);
-		var yMax = parseInt(document.getElementById("ymax").value);
-		var xMin = parseInt(document.getElementById("xmin").value);
-		var yMin = parseInt(document.getElementById("ymin").value);
-		var startx = parseInt(document.getElementById("startx").value);
-		var starty = parseInt(document.getElementById("starty").value);
-		var startz = parseInt(document.getElementById("startz").value);
-		var endx = parseInt(document.getElementById("endx").value);
-		var endy = parseInt(document.getElementById("endy").value);
-		var endz = parseInt(document.getElementById("endz").value);
+		var xMax = parseFloat(document.getElementById("xmax").value);
+		var yMax = parseFloat(document.getElementById("ymax").value);
+		var xMin = parseFloat(document.getElementById("xmin").value);
+		var yMin = parseFloat(document.getElementById("ymin").value);
+		var startx = parseFloat(document.getElementById("startx").value);
+		var starty = parseFloat(document.getElementById("starty").value);
+		var startz = parseFloat(document.getElementById("startz").value);
+		var endx = parseFloat(document.getElementById("endx").value);
+		var endy = parseFloat(document.getElementById("endy").value);
+		var endz = parseFloat(document.getElementById("endz").value);
 		graphData.set("expr",
 				function (emit, x, y) {
 					emit(x, zFunc(x, y), y);
@@ -177,15 +186,30 @@
 		} else {
 			graphViewSolid.set("shaded", false);
 		}
-		var vecData = view.interval({
-			expr: function (emit) {
-				emit(startx, startz, starty);
-				emit(endx, endz, endy);
-			},
-			width: 64,
-			channels: 3,
-			items: 3,
-		});
+
+		if(points.length!=0){
+				var start = points[currVecNum].split(',');
+				var end = points[currVecNum+1].split(',');
+				var vecData = view.interval({
+					expr: function (emit) {
+						emit(parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1]));
+						emit(parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1]));
+					},
+					width: 64,
+					channels: 3,
+					items: 3,
+				});
+		}else {
+			var vecData = view.interval({
+				expr: function (emit) {
+					emit(startx, startz, starty);
+					emit(endx, endz, endy);
+				},
+				width: 64,
+				channels: 3,
+				items: 3,
+			});
+		}
 		vec.set("points", vecData);
 	}
 
@@ -193,8 +217,44 @@
 	
 	
 	var updateGraph = function() { updateGraphFunc(); };
-
-	
+	var NextVec= function(){
+		if(points.length== currVecNum+2)
+			window.alert("No more steps");
+		else{
+			currVecNum++;
+			var start = points[currVecNum].split(',');
+			var end = points[currVecNum+1].split(',');
+			var vecData = view.interval({
+				expr: function (emit) {
+					emit(parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1]));
+					emit(parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1]));
+				},
+				width: 64,
+				channels: 3,
+				items: 3,
+			});
+			vec.set("points", vecData);
+		}
+	};
+	var PrevVec= function(){
+		if(currVecNum== 0)
+			window.alert("This is the first step");
+		else{
+			currVecNum--;
+			var start = points[currVecNum].split(',');
+			var end = points[currVecNum+1].split(',');
+			var vecData = view.interval({
+				expr: function (emit) {
+					emit(parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1]));
+					emit(parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1]));
+				},
+				width: 64,
+				channels: 3,
+				items: 3,
+			});
+			vec.set("points", vecData);
+		}
+	};
 	// setting proxy:true allows interactive controls to override base position
 	var camera = mathbox.camera( { proxy: true, position: [4,2,4] } );
 
@@ -230,7 +290,7 @@
 
 	var graphData = view.area({
 		axes: [1,3], channels: 3, width: 64, height: 64,
-        expr: function (emit, x, y, i, j, t)
+        expr: function (emit, x, y)
 		{
 		  var z = x*y;
           emit( x, z, y );
@@ -239,7 +299,7 @@
 	
 	// actuall emitter set later.
 	var graphColors = view.area({
-		expr: function (emit, x,y, i,j, t) 
+		expr: function (emit, x)
 		{
 			if (x < 0)
 				emit(1.0, 0.0, 0.0, 1.0);
@@ -259,11 +319,12 @@
 		channels: 3,
 		items: 3,
 	});
+
 	var vec = view.vector({
 		width:25,
-	  size:25,
+	  	size:25,
 		points: vecData,
-    end: "true",
+    end: true,
 	stroke: "solid",
     color: '#000000',
   });
