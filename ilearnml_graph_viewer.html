@@ -11,58 +11,74 @@
 
   <link rel="stylesheet" href="mathbox.css">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<style>
+		#paramForm {
+
+		}
+	</style>
+
 </head>
 <body>
-<table>
-	<form>
-		<tr>
-			<td>
-				Function:
-				<input type="text" id="func" name="func" value="sin(x^2+y^2)">
-			</td>
-			<td>
-				Style:
-				<select id="style" >
-					<option value="rb">red blue</option>
-					<option value="rainbow">rainbow</option>
-				  <option value="grayscale">grayscale</option>
-				  <option value="solid blue">solid blue</option>
-				</select>
-			</td>
-			<td>
-				View wireframe:
-				<select id="wireframe" >
-				  <option value="true">yes</option>
-				  <option value="false">no</option>
-				</select>
-			</td>
-			<td>
-				View shadow:
-				<select id="shadow" >
-					<option value="false">no</option>
-					<option value="true">yes</option>
-				</select>
-			</td>
-			<td>
-				<button type="button" onclick="NextVec()">Next Step</button>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="4">
-				xMax : <input type="text" id="xmax" value="3"> xMin : <input type="text" id="xmin" value="-3"> yMax : <input type="text" id="ymax" value="3"> YMin : <input type="text" id="ymin" value="-3">
-			</td>
-			<td>
-				<button type="button" onclick="PrevVec()">Previous Step</button>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="4">
-				startX : <input type="text" id="startx" value="0"> startY : <input type="text" id="starty" value="0"> startZ : <input type="text" id="startz" value="0">endX : <input type="text" id="endx" value="0"> endY : <input type="text" id="endy" value="0"> endZ : <input type="text" id="endz" value="0">
-				<button type="button" onclick="updateGraph()">update Graph</button>
-			</td>
-		</tr>
-	</form>
-</table>
+<div id="paramForm">
+	<table>
+		<form>
+				<tr>
+					<td>
+						Function:
+						<input type="text" id="func" name="func" value="sin(x^2+y^2)">
+					</td>
+					<td>
+						Style:
+						<select id="style" >
+							<option value="rb">red blue</option>
+							<option value="rainbow">rainbow</option>
+						  <option value="grayscale">grayscale</option>
+						  <option value="solid blue">solid blue</option>
+						</select>
+					</td>
+					<td>
+						View wireframe:
+						<select id="wireframe" >
+						  <option value="true">yes</option>
+						  <option value="false">no</option>
+						</select>
+					</td>
+					<td>
+						View shadow:
+						<select id="shadow" >
+							<option value="false">no</option>
+							<option value="true">yes</option>
+						</select>
+					</td>
+					<td>
+
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						xMax : <input type="text" id="xmax" value="3"> xMin : <input type="text" id="xmin" value="-3"> yMax : <input type="text" id="ymax" value="3"> YMin : <input type="text" id="ymin" value="-3">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						startX : <input type="text" id="startx" value="0"> startY : <input type="text" id="starty" value="0"> startZ : <input type="text" id="startz" value="0">endX : <input type="text" id="endx" value="0"> endY : <input type="text" id="endy" value="0"> endZ : <input type="text" id="endz" value="0">
+						<button type="button" onclick="updateGraph()">update Graph</button>
+					</td>
+				</tr>
+		</form>
+	</table>
+</div>
+
+		<table>
+			<tr>
+				<td>
+					<button type="button" onclick="NextVec()">Next Step</button>
+					<button type="button" onclick="PrevVec()">Previous Step</button>
+				</td>
+
+			</tr>
+		</table>
+
   <script>
     var mathbox = mathBox({
       plugins: ['core', 'controls', 'cursor', 'mathbox'],
@@ -96,7 +112,16 @@
 				if (p[0]=="points"){
 					points=p[1].split('|');
 				}else {
-					document.getElementById(p[0]).value = decodeURIComponent(p[1]);
+					if(p[0]=="hide"){
+						var x = document.getElementById("paramForm");
+						if(p[1]=="true"){
+							x.style.display = "none";
+						}else{
+							x.style.display = "block";
+						}
+					}else {
+						document.getElementById(p[0]).value = decodeURIComponent(p[1]);
+					}
 				}
 			}
 		}
