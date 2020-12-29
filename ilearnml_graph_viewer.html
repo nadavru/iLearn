@@ -56,7 +56,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						xMax : <input type="text" id="xmax" value="3"> xMin : <input type="text" id="xmin" value="-3"> yMax : <input type="text" id="ymax" value="3"> YMin : <input type="text" id="ymin" value="-3">
+						xMax : <input type="text" id="xmax" value="3"> xMin : <input type="text" id="xmin" value="-3"> yMax : <input type="text" id="ymax" value="3"> YMin : <input type="text" id="ymin" value="-3"> zMax : <input type="text" id="zmax" value="0"> zMin : <input type="text" id="zmin" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -133,6 +133,8 @@
 		var yMax = parseFloat(document.getElementById("ymax").value);
 		var xMin = parseFloat(document.getElementById("xmin").value);
 		var yMin = parseFloat(document.getElementById("ymin").value);
+		var zMax = parseFloat(document.getElementById("zmax").value);
+		var zMin = parseFloat(document.getElementById("zmin").value);
 		var startx = parseFloat(document.getElementById("startx").value);
 		var starty = parseFloat(document.getElementById("starty").value);
 		var startz = parseFloat(document.getElementById("startz").value);
@@ -144,7 +146,9 @@
 					emit(x, zFunc(x, y), y);
 				}
 		);
-
+		if (zMax != 0 || zMin!=0){
+			zAutofit=false;
+		}
 		if (zAutofit) {
 			var xStep = (xMax - xMin) / 256;
 			var yStep = (yMax - yMin) / 256;
@@ -268,14 +272,9 @@
 			currVecNum--;
 			var start = points[currVecNum].split(',');
 			var end = points[currVecNum+1].split(',');
-			var vecData = view.interval({
-				expr: function (emit) {
-					emit(parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1]));
-					emit(parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1]));
-				},
-				width: 64,
-				channels: 3,
-				items: 3,
+			var vecData = view.array({
+				width: 1, items: 2, channels: 3,
+				data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
 			});
 			vec.set("points", vecData);
 		}
@@ -335,23 +334,14 @@
 		width:  64, height: 64,
 		channels: 4, // RGBA
     });
-	var vecData = view.interval({
-		expr: function (emit) {
-			emit(0, 2, 0);
-			emit(2, 2, 2);
-		},
-		width: 64,
-		channels: 3,
-		items: 3,
+	var vecData = view.array({
+		width: 1, items: 2, channels: 3,
+		data: [ [0,0,0],[1,1,1] ],
 	});
 
 	var vec = view.vector({
-		width:25,
-	  	size:25,
 		points: vecData,
-    end: true,
-	stroke: "solid",
-    color: '#000000',
+		color: "orange", width: 8, start: true, visible: true
   });
 	// create graph in two parts, because want solid and wireframe to be different colors
 	// shaded:false for a solid color (curve appearance provided by mesh)
