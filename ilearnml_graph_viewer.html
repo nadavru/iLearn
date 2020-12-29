@@ -329,19 +329,8 @@
 		data: [ [0,0,0],[1,1,1] ],
 	});
 	var vec = view.vector({
-		color: "orange", width: 8, start: true, visible: true, points: vecData
+		color: "orange", width: 8, end: true, visible: true, points: vecData
  	 });
-
-	var gradientData = view.array({
-		width: 1, items: 2, channels: 3,
-		data: [ [0,0,0],[2,2,2] ],
-	});
-
-	var gradientVisible = true;
-	var gradientView = view.vector({
-		points: gradientData,
-		color: "orange", width: 4, start: true, visible:gradientVisible
-	});
 
 	// create graph in two parts, because want solid and wireframe to be different colors
 	// shaded:false for a solid color (curve appearance provided by mesh)
