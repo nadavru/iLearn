@@ -243,14 +243,9 @@
 			currVecNum++;
 			var start = points[currVecNum].split(',');
 			var end = points[currVecNum+1].split(',');
-			var vecData = view.interval({
-				expr: function (emit) {
-					emit(parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1]));
-					emit(parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1]));
-				},
-				width: 64,
-				channels: 3,
-				items: 3,
+			var vecData = view.array({
+				width: 1, items: 2, channels: 3,
+				data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
 			});
 			vec.set("points", vecData);
 		}
