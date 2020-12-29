@@ -5,7 +5,7 @@
   <title>iLearnML Graph Viewer</title>
   <script src="mathbox-bundle.js"></script>
   <script src="dat.gui.js"></script>
-  
+
 <!-- http://silentmatt.com/javascript-expression-evaluator/ -->
 <script src="parser.js"></script>
 
@@ -90,16 +90,16 @@
     three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
 
 	var view;
-	
+
 	var functionText = "sin(x^2+y^2)";
-	
+
 	var pointText = "(1,1)";
 	var currVecNum=0;
 	var points=[];
 	var a = 1, b = 1;
 	var	xMin = -3, xMax = 3, yMin = -3,	yMax = 3, zMin = -3, zMax = 3;
 	var zAutofit = true;
-	
+
 	// start of updateGraph function ==============================================================
 	var updateGraphFunc = function() {
 		currVecNum=0;
@@ -176,7 +176,7 @@
 					}
 			);
 		} else if (graphColorStyle == "rainbow") {
-			// rainbow hue; zMax = red, zMin = violet			
+			// rainbow hue; zMax = red, zMin = violet
 			graphColors.set("expr",
 					function (emit, x, y) {
 						var z = zFunc(x, y);
@@ -187,7 +187,7 @@
 					}
 			);
 		} else if (graphColorStyle == "solid blue") {
-			// just a solid blue color			
+			// just a solid blue color
 			graphColors.set("expr",
 					function (emit) {
 						emit(0.5, 0.5, 1.0, 1.0);
@@ -219,32 +219,22 @@
 		if(points.length!=0){
 				var start = points[currVecNum].split(',');
 				var end = points[currVecNum+1].split(',');
-				var vecData = view.interval({
-					expr: function (emit) {
-						emit(parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1]));
-						emit(parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1]));
-					},
-					width: 64,
-					channels: 3,
-					items: 3,
+				var vecData =  view.array({
+					width: 1, items: 2, channels: 3,
+					data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
 				});
 		}else {
-			var vecData = view.interval({
-				expr: function (emit) {
-					emit(startx, startz, starty);
-					emit(endx, endz, endy);
-				},
-				width: 64,
-				channels: 3,
-				items: 3,
+			var vecData = view.array({
+				width: 1, items: 2, channels: 3,
+				data: [ [startx, startz, starty],[endx, endz, endy] ],
 			});
 		}
 		vec.set("points", vecData);
 	}
 
 	// end of updateGraph function ==============================================================
-	
-	
+
+
 	var updateGraph = function() { updateGraphFunc(); };
 	var NextVec= function(){
 		if(points.length== currVecNum+2)
@@ -296,21 +286,21 @@
     var xTicks = view.ticks( {width: 5, size: 15, color: "red", zBias:2} );
     var xFormat = view.format( {digits: 2, font:"Arial", weight: "bold", style: "normal", source: xScale} );
     var xTicksLabel = view.label( {color: "red", zIndex: 0, offset:[0,-20], points: xScale, text: xFormat} );
-	
+
 	var yAxis = view.axis( {axis: 3, width: 8, detail: 40, color:"green"} );
     var yScale = view.scale( {axis: 3, divide: 5, nice:true, zero:false} );
     var yTicks = view.ticks( {width: 5, size: 15, color: "green", zBias:2} );
     var yFormat = view.format( {digits: 2, font:"Arial", weight: "bold", style: "normal", source: yScale} );
     var yTicksLabel = view.label( {color: "green", zIndex: 0, offset:[0,0], points: yScale, text: yFormat} );
-	
+
 	var zAxis = view.axis( {axis: 2, width: 8, detail: 40, color:"blue"} );
     var zScale = view.scale( {axis: 2, divide: 5, nice:true, zero:false} );
     var zTicks = view.ticks( {width: 5, size: 15, color: "blue", zBias:2} );
     var zFormat = view.format( {digits: 2, font:"Arial", weight: "bold", style: "normal", source: zScale} );
     var zTicksLabel = view.label( {color: "blue", zIndex: 0, offset:[0,0], points: zScale, text: zFormat} );
-	
+
 	view.grid( {axes:[1,3], width: 2, divideX: 20, divideY: 20, opacity:0.25} );
-	
+
 
 	var graphData = view.area({
 		axes: [1,3], channels: 3, width: 64, height: 64,
@@ -320,7 +310,7 @@
           emit( x, z, y );
         },
     });
-	
+
 	// actuall emitter set later.
 	var graphColors = view.area({
 		expr: function (emit, x)
@@ -338,21 +328,31 @@
 		width: 1, items: 2, channels: 3,
 		data: [ [0,0,0],[1,1,1] ],
 	});
-
 	var vec = view.vector({
-		points: vecData,
-		color: "orange", width: 8, start: true, visible: true
-  });
+		color: "orange", width: 8, start: true, visible: true, points: vecData
+ 	 });
+
+	var gradientData = view.array({
+		width: 1, items: 2, channels: 3,
+		data: [ [0,0,0],[2,2,2] ],
+	});
+
+	var gradientVisible = true;
+	var gradientView = view.vector({
+		points: gradientData,
+		color: "orange", width: 4, start: true, visible:gradientVisible
+	});
+
 	// create graph in two parts, because want solid and wireframe to be different colors
 	// shaded:false for a solid color (curve appearance provided by mesh)
 	// width: width of line mesh
 	// note: colors will mult. against color value, so set color to white (#FFFFFF) to let colors have complete control.
-	var graphShaded = false;	
+	var graphShaded = false;
 	var graphViewSolid = view.surface({
-		points:graphData, 
+		points:graphData,
 		color:"#FFFFFF", shaded:false, fill:true, lineX:false, lineY:false, colors:graphColors, visible:true, width:0
 	});
-	
+
 	var graphWireVisible = true;
 	var graphViewWire = view.surface({
 		points: graphData,
