@@ -29,6 +29,14 @@
         </form>
     </table>
 </div>
+<table>
+    <tr>
+        <td>
+            <button type="button" onclick="NextVec()">Next Step</button>
+            <button type="button" onclick="PrevVec()">Previous Step</button>
+        </td>
+    </tr>
+</table>
 <script>
     document.getElementById("paramForm").style.display = "none";
     var mathbox = mathBox({
@@ -44,23 +52,30 @@
 
     var pointText = "(1,1)";
     var currVecNum=0;
-    var points=[];
+    var vector=[];
     var a = 1, b = 1;
     var	xMin = -3, xMax = 3, yMin = -3,	yMax = 3, zMin = -3, zMax = 3;
 
     // start of updateGraph function ==============================================================
     var updateGraphFunc = function() {
         currVecNum = 0;
+        vector=[];
         points = [];
+        var colors=[];
         var hashParams = window.location.hash;
         if (hashParams.length != 0) {
             hashParams = hashParams.substr(1).split('&');// substr(1) to remove the `#`
             for (var i = 0; i < hashParams.length; i++) {
                 var p = hashParams[i].split('=');
-                if (p[0] == "points") {
-                    points = p[1].split('|');
+                if (p[0].startsWith("points")) {
+                    colors.push(((p[0].split('_'))[1]));
+                    points.push( p[1].split('|'));
                 } else {
-                    document.getElementById(p[0]).value = decodeURIComponent(p[1]);
+                    if (p[0] == "vec") {
+                        vector = p[1].split('|');
+                    } else {
+                        document.getElementById(p[0]).value = decodeURIComponent(p[1]);
+                    }
                 }
             }
         }
@@ -74,24 +89,70 @@
         var zMin = parseFloat(document.getElementById("zmin").value);
         view.set("range", [[xMin, xMax], [zMin, zMax], [yMin, yMax]]);
 
-
-        var temp;
-        var arr=[];
-        for(var i=0;i<points.length;i++) {
-            temp= points[i].split(',');
-            arr.push(parseFloat(temp[0]), parseFloat(temp[2]), parseFloat(temp[1]));
+        for (var i=0; i<points.length; i++){
+            var temp;
+            var arr=[];
+            for(var j=0;j<points[i].length;j++) {
+                temp= points[i][j].split(',');
+                arr.push(parseFloat(temp[0]), parseFloat(temp[2]), parseFloat(temp[1]));
+            }
+            temp = view.array({
+                width: 1, items: arr.length, channels: 3,
+                data: arr,
+            });
+            pointsGroup[i].set("points", temp);
+            pointsGroup[i].set("color", colors[i]);
         }
-        temp = view.array({
-            width: 1, items: arr.length, channels: 3,
-            data: arr,
-        });
-        pointsGroup1.set("points", temp);
+
+
+        if(vector.length!=0){
+            var start = vector[currVecNum].split(',');
+            var end = vector[currVecNum+1].split(',');
+            var vecData =  view.array({
+                width: 1, items: 2, channels: 3,
+                data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
+            });
+        }else {
+            var vecData = view.array({
+                width: 1, items: 0, channels: 3,
+                data: [],
+            });
+        }
+        vec.set("points", vecData);
     }
 
     // end of updateGraph function ==============================================================
 
 
     var updateGraph = function() { updateGraphFunc(); };
+    var NextVec= function(){
+        if(points.length== currVecNum+2)
+            window.alert("No more steps");
+        else{
+            currVecNum++;
+            var start = vector[currVecNum].split(',');
+            var end = vector[currVecNum+1].split(',');
+            var vecData = view.array({
+                width: 1, items: 2, channels: 3,
+                data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
+            });
+            vec.set("points", vecData);
+        }
+    };
+    var PrevVec= function(){
+        if(currVecNum== 0)
+            window.alert("This is the first step");
+        else{
+            currVecNum--;
+            var start = vector[currVecNum].split(',');
+            var end = vector[currVecNum+1].split(',');
+            var vecData = view.array({
+                width: 1, items: 2, channels: 3,
+                data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
+            });
+            vec.set("points", vecData);
+        }
+    };
     // setting proxy:true allows interactive controls to override base position
     var camera = mathbox.camera( { proxy: true, position: [4,2,4] } );
 
@@ -128,7 +189,25 @@
         width: 1, items: 0, channels: 3,
         data: [],
     });
-    var pointsGroup1 = view.point({points: pointData, size:16, color: 'black'});
+    var pointsGroup =[];
+    pointsGroup[0] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[1] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[2] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[3] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[4] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[5] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[6] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[7] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[8] = view.point({points: pointData, size:24, color: 'black'});
+    pointsGroup[9] = view.point({points: pointData, size:24, color: 'black'});
+
+    var vecData = view.array({
+        width: 1, items: 0, channels: 3,
+        data: [],
+    });
+    var vec = view.vector({
+        color: "black", width: 20, visible: true, points: vecData
+    });
     // actuall emitter set later.
     // create graph in two parts, because want solid and wireframe to be different colors
     // shaded:false for a solid color (curve appearance provided by mesh)
