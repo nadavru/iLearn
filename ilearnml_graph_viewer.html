@@ -88,7 +88,7 @@
 
     var three = mathbox.three;
     three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
-
+	var displayTrace = true;
 	var view;
 
 	var functionText = "sin(x^2+y^2)";
@@ -248,6 +248,20 @@
 				data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
 			});
 			vec.set("points", vecData);
+			if (displayTrace){
+				start = points[currVecNum-1].split(',');
+				end = points[currVecNum].split(',');
+				vecData = view.array({
+					width: 1, items: 2, channels: 3,
+					data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
+				});
+				trace.push(view.vector({
+					color: "black", width: 8, end: true, visible: true, points: vecData
+				}));
+				displayTrace = !displayTrace;
+			}else{
+				displayTrace = !displayTrace;
+			}
 		}
 	};
 	var PrevVec= function(){
@@ -262,6 +276,12 @@
 				data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
 			});
 			vec.set("points", vecData);
+			if (!displayTrace){
+				trace.pop().remove();
+				displayTrace = !displayTrace;
+			}else{
+				displayTrace = !displayTrace;
+			}
 		}
 	};
 	// setting proxy:true allows interactive controls to override base position
@@ -326,6 +346,8 @@
 	var vec = view.vector({
 		color: "orange", width: 8, end: true, visible: true, points: vecData
  	 });
+
+	var  trace =[];
 
 	// create graph in two parts, because want solid and wireframe to be different colors
 	// shaded:false for a solid color (curve appearance provided by mesh)
