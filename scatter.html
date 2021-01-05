@@ -129,7 +129,7 @@
         if(vector.length== currVecNum+2)
             window.alert("No more steps");
         else{
-            currVecNum++;
+            currVecNum+=2;
             var start = vector[currVecNum].split(',');
             var end = vector[currVecNum+1].split(',');
             var vecData = view.array({
@@ -143,7 +143,7 @@
         if(currVecNum== 0)
             window.alert("This is the first step");
         else{
-            currVecNum--;
+            currVecNum-=2;
             var start = vector[currVecNum].split(',');
             var end = vector[currVecNum+1].split(',');
             var vecData = view.array({
