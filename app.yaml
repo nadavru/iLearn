@@ -10,6 +10,8 @@ handlers:
 - url: /viewer/
   static_dir: viewer
 
+- url: /iLearnML/
+  static_dir: templates
 - url: /.*
   secure: always
   redirect_http_response_code: 301
