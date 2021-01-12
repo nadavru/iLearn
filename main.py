@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template
 import numpy as np
 from math import exp
 #from abc import ABCMeta, abstractmethod
@@ -116,7 +116,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    return runGaussian()
+    return render_template('index.html')
 
 
 if __name__ == '__main__':

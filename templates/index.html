@@ -11,11 +11,10 @@
 
     <title>iLearnML</title>
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/templatemo-art-factory.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/owl-carousel.css">
-
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assets/css/bootstrap.min.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assets/css/font-awesome.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assets/css/templatemo-art-factory.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assets/css/owl-carousel.css') }}">
     </head>
     
     <body>
@@ -106,21 +105,21 @@
                     <p>iLearnML lets people learn machine learning optimization algorithms in an easy visual way</p>
                     <ul>
                         <li>
-                            <img src="assets/images/about-icon-02.png" alt="">
+                            <img src= "{{ url_for('static',filename='styles/assets/images/about-icon-02.png') }}" alt="">
                             <div class="text">
                                 <h6>3D visual representation</h6>
                                 <br>
                             </div>
                         </li>
                         <li>
-                            <img src="assets/images/about-icon-01.png" alt="">
+                            <img src="{{ url_for('static',filename='styles/assets/images/about-icon-01.png') }}" alt="">
                             <div class="text">
                                 <h6>easy to understand explanations and examples</h6>
                                 <br>
                             </div>
                         </li>
                         <li>
-                            <img src="assets/images/about-icon-03.png" alt="">
+                            <img src="{{ url_for('static',filename='styles/assets/images/about-icon-03.png') }}" alt="">
                             <div class="text">
                                 <h6>score Leaderboard for the best optimizations</h6>
                                 <br>
@@ -129,7 +128,7 @@
                     </ul>
                 </div>
                 <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                    <img src="assets/images/gd_exmpl.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                    <img src="{{ url_for('static',filename='styles/assets/images/gd_exmpl.png') }}" class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
             </div>
         </div>
@@ -144,7 +143,7 @@
                 <div class="owl-carousel owl-theme">
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="assets/images/service-icon-01.png" alt=""></i>
+                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-01.png') }}" alt=""></i>
                         </div>
                         <h5 class="service-title">First Box Service</h5>
                         <p>Aenean vulputate massa sed neque consectetur, ac fringilla quam aliquet. Sed a enim nec eros tempor cursus at id libero.</p>
@@ -152,7 +151,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="assets/images/service-icon-02.png" alt=""></i>
+                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-02.png') }}" alt=""></i>
                         </div>
                         <h5 class="service-title">Second Box Title</h5>
                         <p>Pellentesque vitae urna ut nisi viverra tristique quis at dolor. In non sodales dolor, id egestas quam. Aliquam erat volutpat. </p>
@@ -160,7 +159,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="assets/images/service-icon-03.png" alt=""></i>
+                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-03.png') }}" alt=""></i>
                         </div>
                         <h5 class="service-title">Third Title Box</h5>
                         <p>Quisque finibus libero augue, in ultrices quam dictum id. Aliquam quis tellus sit amet urna tincidunt bibendum.</p>
@@ -168,7 +167,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="assets/images/service-icon-02.png" alt=""></i>
+                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-02.png') }}" alt=""></i>
                         </div>
                         <h5 class="service-title">Fourth Service Box</h5>
                         <p>Fusce sollicitudin feugiat risus, tempus faucibus arcu blandit nec. Duis auctor dolor eu scelerisque vestibulum.</p>
@@ -176,7 +175,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="assets/images/service-icon-01.png" alt=""></i>
+                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-01.png') }}" alt=""></i>
                         </div>
                         <h5 class="service-title">Fifth Service Title</h5>
                         <p>Curabitur aliquam eget tellus id porta. Proin justo sapien, posuere suscipit tortor in, fermentum mattis elit.</p>
@@ -184,7 +183,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="assets/images/service-icon-03.png" alt=""></i>
+                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-03.png') }}" alt=""></i>
                         </div>
                         <h5 class="service-title">Sixth Box Title</h5>
                         <p>Ut nibh velit, aliquam vitae pellentesque nec, convallis vitae lacus. Aliquam porttitor urna ut pellentesque.</p>
@@ -192,7 +191,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="assets/images/service-icon-01.png" alt=""></i>
+                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-01.png') }}" alt=""></i>
                         </div>
                         <h5 class="service-title">Seventh Title Box</h5>
                         <p>Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices malesuada odio. Donec non quam.</p>
@@ -210,7 +209,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                    <img src="assets/images/left-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                    <img src="{{ url_for('static',filename='styles/assets/images/left-image.png') }}" class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
                 <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
                     <div class="left-heading">
@@ -234,21 +233,20 @@
 
     
     <!-- jQuery -->
-    <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script src="{{ url_for('static',filename='styles/assets/js/jquery-2.1.0.min.js') }}"></script>
 
     <!-- Bootstrap -->
-    <script src="assets/js/popper.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static',filename='styles/assets/js/popper.js') }}"></script>
+    <script src="{{ url_for('static',filename='styles/assets/js/bootstrap.min.js') }}"></script>
 
     <!-- Plugins -->
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/scrollreveal.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="{{ url_for('static',filename='styles/assets/js/scrollreveal.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='styles/assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='styles/assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='styles/assets/js/imgfix.min.js') }}"></script> 
     
     <!-- Global Init -->
-    <script src="assets/js/custom.js"></script>
+    <script src="{{ url_for('static',filename='styles/assets/js/custom.js') }}"></script>
 
   </body>
 </html>

@@ -1,7 +1,7 @@
 (function($) {
   "use strict";
 
-  $(".owl-carousel").owlCarousel({
+  $(".owl-carousel").fn.owlCarousel({
     loop: true,
     margin: 30,
     nav: true,
