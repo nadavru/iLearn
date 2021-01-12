@@ -16,7 +16,7 @@
 
 		}
 	</style>
-	<link rel = "icon" href ="title_icon.png" type = "image/x-icon">
+
 </head>
 <body>
 <div id="paramForm">
@@ -116,9 +116,9 @@
 					if(p[0]=="hide"){
 						var x = document.getElementById("paramForm");
 						if(p[1]=="true"){
-							x.style.display = "block";
-						}else{
 							x.style.display = "none";
+						}else{
+							x.style.display = "block";
 						}
 					}else {
 						document.getElementById(p[0]).value = decodeURIComponent(p[1]);
