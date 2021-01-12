@@ -16,7 +16,7 @@
 
 		}
 	</style>
-
+	<link rel = "icon" href ="title_icon.png" type = "image/x-icon">
 </head>
 <body>
 <div id="paramForm">
@@ -80,8 +80,7 @@
 		</table>
 
   <script>
-    document.getElementById("paramForm").style.display = "none";
-    var mathbox = mathBox({
+	var mathbox = mathBox({
       plugins: ['core', 'controls', 'cursor', 'mathbox'],
       controls: {klass: THREE.OrbitControls}
     });
@@ -115,7 +114,7 @@
 				}else {
 					if(p[0]=="hide"){
 						var x = document.getElementById("paramForm");
-						if(p[1]=="true"){
+						if(p[1]=="false"){
 							x.style.display = "none";
 						}else{
 							x.style.display = "block";
