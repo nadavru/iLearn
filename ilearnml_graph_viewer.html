@@ -80,7 +80,8 @@
 		</table>
 
   <script>
-	var mathbox = mathBox({
+    document.getElementById("paramForm").style.display = "none";
+    var mathbox = mathBox({
       plugins: ['core', 'controls', 'cursor', 'mathbox'],
       controls: {klass: THREE.OrbitControls}
     });
@@ -114,10 +115,10 @@
 				}else {
 					if(p[0]=="hide"){
 						var x = document.getElementById("paramForm");
-						if(p[1]=="false"){
-							x.style.display = "none";
-						}else{
+						if(p[1]=="true"){
 							x.style.display = "block";
+						}else{
+							x.style.display = "none";
 						}
 					}else {
 						document.getElementById(p[0]).value = decodeURIComponent(p[1]);
