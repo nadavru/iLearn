@@ -13,7 +13,7 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 	<style>
 		#paramForm {
-
+			display : none;
 		}
 	</style>
 	<link rel = "icon" href ="title_icon.png" type = "image/x-icon">
@@ -266,17 +266,21 @@
 					data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
 				});
 				vec[i].set("points", vecData);
-				if (displayTrace) {
 					start = points[i][currVecNum - 1].split(',');
 					end = points[i][currVecNum].split(',');
 					vecData = view.array({
 						width: 1, items: 2, channels: 3,
 						data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
 					});
-					trace.push(view.vector({
-						color: "black", width: 8, end: true, visible: true, points: vecData
-					}));
-				}
+					if (displayTrace) {
+						trace.push(view.vector({
+							color: "black", width: 8, end: true, visible: true, points: vecData
+						}));
+					}else{
+						trace.push(view.vector({
+							color: "white", width: 8, end: true, visible: true, points: vecData
+						}));
+					}
 			}
 		}
 			displayTrace = !displayTrace;
@@ -302,9 +306,8 @@
 								data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
 							});
 							vec[i].set("points", vecData);
-							if (!displayTrace) {
 								trace.pop().remove();
-							}
+
 						}
 					}
 				}
