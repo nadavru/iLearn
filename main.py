@@ -1,7 +1,7 @@
 from flask import Flask,render_template
-from templates.src.learning import Trainer
+from learning import Trainer
 from math import exp
-from templates.src.optimizers import *
+from optimizers import *
 #from abc import ABCMeta, abstractmethod
 
 e = exp(1)

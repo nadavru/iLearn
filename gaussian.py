@@ -1,8 +1,6 @@
-from flask import Flask,render_template
 from learning import Trainer
 from math import exp
 from optimizers import *
-#from abc import ABCMeta, abstractmethod
 
 e = exp(1)
 
@@ -52,37 +50,3 @@ class Gaussian(Trainer):
         return src
  
 
-def runGaussian():
-    sizes = []
-    for ix in [-15,0,15]:
-        for iy in [-15,0,15]:
-            sizes.append((50,ix,iy,5))
-
-    grid_x = 30
-    grid_y = 30
-
-    G = Gaussian(sizes, grid_x, grid_y)
-    Xs, Ys, Zs = G.train()
-    src = G.display()
-
-    return "<iframe src=\""+src+"\" title=\"Gausian\"></iframe>"
-    
-
-# If `entrypoint` is not defined in app.yaml, App Engine will look for an app
-# called `app` in `main.py`.
-
-
-app = Flask(__name__)
-
-@app.route('/')
-def main():
-    return runGaussian()
-
-
-if __name__ == '__main__':
-    # This is used when running locally only. When deploying to Google App
-    # Engine, a webserver process such as Gunicorn will serve the app. This
-    # can be configured by adding an `entrypoint` to app.yaml.
-    app.run(host='127.0.0.1', port=8080, debug=True)
-# [END gae_python3_app]
-# [END gae_python38_app]
