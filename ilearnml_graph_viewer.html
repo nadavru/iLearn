@@ -111,7 +111,10 @@
 			for (var i = 0; i < hashParams.length; i++) {
 				var p = hashParams[i].split('=');
 				if (p[0]=="points"){
-					points=p[1].split('|');
+					points=p[1].split('*');
+					for (var j=0;j<points.length;j++){
+						points[j]= points[j].split('|');
+					}
 				}else {
 					if(p[0]=="hide"){
 						var x = document.getElementById("paramForm");
@@ -202,7 +205,7 @@
 						var percent = (z - 0.9 * zMin) / (zMax - 0.9 * zMin);
 						var color = new THREE.Color(0xffffff);
 						color.setHSL(1 - 0.3 * percent, 1, 0.5);
-						emit(color.r, 0.0, color.b, 1.0);
+						emit(color.r*0.9, 0.0, color.b, 1.0);
 					}
 			);
 		}
@@ -217,20 +220,25 @@
 			graphViewSolid.set("shaded", false);
 		}
 
-		if(points.length!=0){
-				var start = points[currVecNum].split(',');
-				var end = points[currVecNum+1].split(',');
-				var vecData =  view.array({
+
+			if(points.length!=0){
+				for (var i = 0; i < points.length; i++) {
+					var start = points[i][currVecNum].split(',');
+					var end = points[i][currVecNum + 1].split(',');
+					var vecData = view.array({
+						width: 1, items: 2, channels: 3,
+						data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
+					});
+					vec[i].set("points", vecData);
+				}
+			}else {
+				var vecData = view.array({
 					width: 1, items: 2, channels: 3,
-					data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
+					data: [ [startx, startz, starty],[endx, endz, endy] ],
 				});
-		}else {
-			var vecData = view.array({
-				width: 1, items: 2, channels: 3,
-				data: [ [startx, startz, starty],[endx, endz, endy] ],
-			});
-		}
-		vec.set("points", vecData);
+				vec[0].set("points", vecData);
+			}
+
 	}
 
 	// end of updateGraph function ==============================================================
@@ -238,52 +246,70 @@
 
 	var updateGraph = function() { updateGraphFunc(); };
 	var NextVec= function(){
-		if(points.length== currVecNum+2)
-			window.alert("No more steps");
-		else{
+		counter=0;
+		for (var i =0 ;i<points.length;i++){
+			if(points[i].length <= currVecNum+1)
+				counter++;
+		}
+		if (points.length != counter){
 			currVecNum++;
-			var start = points[currVecNum].split(',');
-			var end = points[currVecNum+1].split(',');
-			var vecData = view.array({
-				width: 1, items: 2, channels: 3,
-				data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
-			});
-			vec.set("points", vecData);
-			if (displayTrace){
-				start = points[currVecNum-1].split(',');
-				end = points[currVecNum].split(',');
-				vecData = view.array({
+		}
+		counter=0;
+		for (var i =0 ;i<points.length;i++){
+			if(points[i].length <= currVecNum+1)
+				counter++;
+			else{
+				var start = points[i][currVecNum].split(',');
+				var end = points[i][currVecNum+1].split(',');
+				var vecData = view.array({
 					width: 1, items: 2, channels: 3,
 					data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
 				});
-				trace.push(view.vector({
-					color: "black", width: 8, end: true, visible: true, points: vecData
-				}));
-				displayTrace = !displayTrace;
-			}else{
-				displayTrace = !displayTrace;
+				vec[i].set("points", vecData);
+				if (displayTrace) {
+					start = points[i][currVecNum - 1].split(',');
+					end = points[i][currVecNum].split(',');
+					vecData = view.array({
+						width: 1, items: 2, channels: 3,
+						data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
+					});
+					trace.push(view.vector({
+						color: "black", width: 8, end: true, visible: true, points: vecData
+					}));
+				}
 			}
+		}
+			displayTrace = !displayTrace;
+
+		if (points.length== counter){
+			window.alert("no more steps");
 		}
 	};
 	var PrevVec= function(){
-		if(currVecNum== 0)
+		if(currVecNum==0)
 			window.alert("This is the first step");
 		else{
+			debugger;
 			currVecNum--;
-			var start = points[currVecNum].split(',');
-			var end = points[currVecNum+1].split(',');
-			var vecData = view.array({
-				width: 1, items: 2, channels: 3,
-				data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
-			});
-			vec.set("points", vecData);
-			if (!displayTrace){
-				trace.pop().remove();
-				displayTrace = !displayTrace;
-			}else{
-				displayTrace = !displayTrace;
+			for (var i =0 ;i<points.length;i++){
+					for (var i =0 ;i<points.length;i++) {
+						if (points[i].length <= currVecNum + 1) {
+						} else {
+							var start = points[i][currVecNum].split(',');
+							var end = points[i][currVecNum + 1].split(',');
+							var vecData = view.array({
+								width: 1, items: 2, channels: 3,
+								data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
+							});
+							vec[i].set("points", vecData);
+							if (!displayTrace) {
+								trace.pop().remove();
+							}
+						}
+					}
+				}
 			}
-		}
+			displayTrace = !displayTrace;
 	};
 	// setting proxy:true allows interactive controls to override base position
 	var camera = mathbox.camera( { proxy: true, position: [4,2,4] } );
@@ -342,11 +368,20 @@
     });
 	var vecData = view.array({
 		width: 1, items: 2, channels: 3,
-		data: [ [0,0,0],[1,1,1] ],
+		data: [ [0,0,0],[0,0,0] ],
 	});
-	var vec = view.vector({
-		color: "orange", width: 8, end: true, visible: true, points: vecData
- 	 });
+
+	var vec =[];
+	vec[0] = view.vector({color: "#e77f00", width: 8, end: true, visible: true, points: vecData});
+	vec[1] = view.vector({color: "#00AF00", width: 8, end: true, visible: true, points: vecData});
+	vec[2] = view.vector({color: "#AFA700", width: 8, end: true, visible: true, points: vecData});
+	vec[3] = view.vector({color: "#808080", width: 8, end: true, visible: true, points: vecData});
+	vec[4] = view.vector({color: "#4B0082", width: 8, end: true, visible: true, points: vecData});
+	vec[5] = view.vector({color: "#e77f00", width: 8, end: true, visible: true, points: vecData});
+	vec[6] = view.vector({color: "#e77f00", width: 8, end: true, visible: true, points: vecData});
+	vec[7] = view.vector({color: "#e77f00", width: 8, end: true, visible: true, points: vecData});
+	vec[8] = view.vector({color: "#e77f00", width: 8, end: true, visible: true, points: vecData});
+	vec[9] = view.vector({color: "#e77f00", width: 8, end: true, visible: true, points: vecData});
 
 	var  trace =[];
 
