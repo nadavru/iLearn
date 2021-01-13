@@ -1,8 +1,56 @@
 from flask import Flask,render_template
+<<<<<<< HEAD
 from learning import Trainer
 from math import exp
 from optimizers import *
+=======
+import numpy as np
+from math import exp
+>>>>>>> parent of b22eefc... before marging
 #from abc import ABCMeta, abstractmethod
+
+
+class Trainer:
+    def __init__(self, grid_x, grid_y, lr=0.5, epochs=50): 
+        self.lr=lr
+        self.x_cur = 2*grid_x*np.random.random_sample()-grid_x
+        self.y_cur = 2*grid_y*np.random.random_sample()-grid_y
+        self.epochs=epochs
+
+        x = np.linspace(-grid_x, grid_x, 1000)
+        y = np.linspace(-grid_y, grid_y, 1000)
+        self.X, self.Y = np.meshgrid(x, y)
+
+    def __call__(self): 
+        return self.X, self.Y, np.where(True, self.calc(self.X, self.Y), 0)
+    
+    def train(self): 
+        self.Xs = [self.x_cur]
+        self.Ys = [self.y_cur]
+        self.Zs = [self.calc(self.x_cur, self.y_cur)]
+
+        for _ in range(self.epochs):
+            d = self.derive(self.x_cur, self.y_cur)
+            #print(d)
+            self.x_cur -= self.lr*d[0]
+            self.y_cur -= self.lr*d[1]
+
+            self.Xs.append(self.x_cur)
+            self.Ys.append(self.y_cur)
+            self.Zs.append(self.calc(self.x_cur, self.y_cur))
+        return self.Xs, self.Ys, self.Zs
+
+ #   @abstractmethod
+    def display(self): 
+      pass
+    
+  #  @abstractmethod
+    def calc(self, x, y): 
+      pass
+
+  #  @abstractmethod
+    def derive(self, x, y): 
+      pass
 
 e = exp(1)
 
@@ -21,12 +69,11 @@ class Gaussian_helper:
         return (tmp*(x-self.px), tmp*(y-self.py))
 
 class Gaussian(Trainer):
-
-    def __init__(self, apc:list, grid_x, grid_y, lr=0.5, epochs=50, opt=SGD, x=None, y=None): 
-        super().__init__(grid_x, grid_y, lr, epochs, opt, x, y)
+    def __init__(self, apc, grid_x, grid_y, lr=0.5, epochs=50): 
+        super().__init__(grid_x, grid_y, lr, epochs)
         self.g_list = [Gaussian_helper(*i) for i in apc]
 
-        url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
+        url = "https://htmlpreview.github.io/?https://github.com/nadavru/iLearn/blob/iLearnML/ilearnml_graph_viewer.html#"
         self.disp_url = url+f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
 
         self.f_str = ""
@@ -50,7 +97,6 @@ class Gaussian(Trainer):
 
         src=self.disp_url+f"func={self.f_str}&points={points_str}"
         return src
- 
 
 def runGaussian():
     sizes = []
@@ -76,7 +122,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    return runGaussian()
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
