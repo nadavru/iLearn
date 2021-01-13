@@ -46,7 +46,17 @@ class Gaussian(Trainer):
           points_str+=(str)(self.Xs[i])+","+(str)(self.Ys[i])+","+(str)(self.Zs[i])+"|"
         points_str=points_str[:-1]
 
-        src=self.disp_url+f"func={self.f_str}&points={points_str}"
+        src= f"func={self.f_str}&points={points_str}"
         return src
- 
+def runGaussian():
+    sizes = []
+    for ix in [-15,0,15]:
+        for iy in [-15,0,15]:
+            sizes.append((50,ix,iy,5))
+    grid_x = 30
+    grid_y = 30
+    G = Gaussian(sizes, grid_x, grid_y)
+    Xs, Ys, Zs = G.train()
+    src = G.display()
+    return src
 
