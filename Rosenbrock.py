@@ -8,7 +8,7 @@ class Rosenbrock(Trainer):
         super().__init__(grid_x, grid_y, lr, epochs, opt, x, y)
 
         url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
-        self.disp_url = url+f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
 
         self.a, self.b = a, b
         self.f_str = f"({a}-x)^2+{b}*(y-x^2)^2"

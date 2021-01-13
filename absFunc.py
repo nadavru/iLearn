@@ -7,7 +7,7 @@ class Absfunc(Trainer):
         super().__init__(grid_x, grid_y, lr, epochs, opt, x, y)
 
         url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
-        self.disp_url = url+f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
 
         #self.f_str = "x^4+y^4+50*sin(30*(x^2+y^2)*atan(y/x))"
         '''t = "3*atan(y/x)"

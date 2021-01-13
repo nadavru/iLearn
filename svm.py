@@ -15,10 +15,10 @@ class SVM(Trainer):
 
         url = "https://htmlpreview.github.io/?https://github.com/nadavru/iLearn/blob/iLearnML/scatter.html#"
         #grid = 30
-        self.disp_url = url+f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
         
         url2 = "https://htmlpreview.github.io/?https://github.com/nadavru/iLearn/blob/iLearnML/ilearnml_graph_viewer.html#"
-        self.disp_url2 = url2+f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url2 = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
 
         #self.X, self.Y = np.concatenate((self.group0[:,0],self.group1[:,0])), np.concatenate((self.group0[:,1],self.group1[:,1]))
 
@@ -79,7 +79,7 @@ class SVM(Trainer):
       points_blue += f"{x},{y},0"+"|"
     points_blue=points_blue[:-1]
 
-    src=self.disp_url+f"points_red={points_red}&points_blue={points_blue}&vec={points_str}"
+    src= f"points_red={points_red}&points_blue={points_blue}&vec={points_str}"
     return src
   
   def display2(self): 

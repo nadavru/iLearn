@@ -25,7 +25,7 @@ class Gaussian(Trainer):
         self.g_list = [Gaussian_helper(*i) for i in apc]
 
         url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
-        self.disp_url = url+f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
 
         self.f_str = ""
         for a, px, py, c in apc:
@@ -46,7 +46,7 @@ class Gaussian(Trainer):
           points_str+=(str)(self.Xs[i])+","+(str)(self.Ys[i])+","+(str)(self.Zs[i])+"|"
         points_str=points_str[:-1]
 
-        src= f"func={self.f_str}&points={points_str}"
+        src= f"func={self.f_str}$points={points_str}"
         return src
 def runGaussian():
     sizes = []

@@ -8,7 +8,7 @@ class Beale(Trainer):
         super().__init__(grid_x, grid_y, lr, epochs, opt, x, y)
 
         url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
-        self.disp_url = url+f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
 
         self.f_str = f"(1.5-x+x*y)^2+(2.25-x+x*y^2)^2+(2.625-x+x*y^3)^2"
         
@@ -27,7 +27,7 @@ class Beale(Trainer):
           points_str+=(str)(self.Xs[i])+","+(str)(self.Ys[i])+","+(str)(self.Zs[i])+"|"
         points_str=points_str[:-1]
 
-        src=self.disp_url+f"func={self.f_str}&points={points_str}"
+        src=f"func={self.f_str}&points={points_str}"
         return src
 
 def runBeale():

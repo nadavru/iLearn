@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 from gaussian import runGaussian
 from Rosenbrock import runRosenbrock
 from Himmelblau import runHimmelblau
@@ -7,24 +7,30 @@ from Rastrigin import runRastrigin
 from absFunc import runABS
 from Beale import runBeale
 
-import requests
 
 app = Flask(__name__)
 
 @app.route('/')
 def main():
-    try:
-        page = request.GET['page']
-        return page
-    except Exception as e:
-        print(e) # handle your errors
-        return e
-    page = 1
-    runSVM()
-    runRosenbrock()
-    runHimmelblau()
-    runGaussian()
-    return a
+    algo = request.args.get('algo')
+    if(algo == "Gaussian"):
+        s = runGaussian()
+    elif(algo == "Beale"):
+        s = runBeale()
+    elif(algo == "Himmelblau"):
+        s = runHimmelblau()
+    elif(algo == "Rastrigin"):
+        s = runRastrigin()
+    elif(algo == "SVM"):
+        s = runSVM()
+    elif(algo == "Rosenbrock"):
+        s = runRosenbrock()
+    elif(algo == "ABS"):
+        s = runABS()
+    return render_template("viewerGDpyver.html",pyString = s)
+ 
+
+
 
 
 if __name__ == '__main__':

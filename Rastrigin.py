@@ -9,7 +9,7 @@ class Rastrigin(Trainer):
         super().__init__(grid_x, grid_y, lr, epochs)
 
         url = "https://htmlpreview.github.io/?https://github.com/nadavru/iLearn/blob/iLearnML/ilearnml_graph_viewer.html#"
-        self.disp_url = url+f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
 
         self.A = A
         self.f_str = f"{2*A}+x^2-{A}*cos({2*pi}*x)+y^2-{A}*cos({2*pi}*y)"

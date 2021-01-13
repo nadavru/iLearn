@@ -54,7 +54,7 @@ class Himmelblau(Trainer):
         A = f"0.5*(x-{self.x_cur})*{Hx}+(y-{self.y_cur})*{Hy}"
         B = f"((x-{self.x_cur})*{dx}+(y-{self.y_cur})*{dy})"
         f_str2 = f"{f_str}+{A}+{B}"
-        src=self.disp_url+f"func={f_str2}"
+        src=f"func={f_str2}"
         return src
 
 def runHimmelblau():
