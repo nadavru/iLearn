@@ -1,12 +1,6 @@
 from flask import Flask,render_template
-<<<<<<< HEAD
-from learning import Trainer
-from math import exp
-from optimizers import *
-=======
 import numpy as np
 from math import exp
->>>>>>> parent of b22eefc... before marging
 #from abc import ABCMeta, abstractmethod
 
 
@@ -97,22 +91,6 @@ class Gaussian(Trainer):
 
         src=self.disp_url+f"func={self.f_str}&points={points_str}"
         return src
-
-def runGaussian():
-    sizes = []
-    for ix in [-15,0,15]:
-        for iy in [-15,0,15]:
-            sizes.append((50,ix,iy,5))
-
-    grid_x = 30
-    grid_y = 30
-
-    G = Gaussian(sizes, grid_x, grid_y)
-    Xs, Ys, Zs = G.train()
-    src = G.display()
-
-    return "<iframe src=\""+src+"\" title=\"Gausian\"></iframe>"
-    
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
