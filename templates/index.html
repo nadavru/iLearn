@@ -11,10 +11,11 @@
 
     <title>iLearnML</title>
     <!-- Additional CSS Files -->
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assets/css/bootstrap.min.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assets/css/font-awesome.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assets/css/templatemo-art-factory.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assets/css/owl-carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/templatemo-art-factory.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/owl-carousel.css">
+
     </head>
     
     <body>
@@ -50,7 +51,12 @@
                                 <ul>
                                     <li><a href="gradient%20decent.html">Gradient Decent</a></li>
                                     <li><a href="">Newton</a></li>
-                                    <li><a href="">Quasi Newton</a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="javascript:;">Learning</a>
+                                <ul>
+                                    <li><a href="">SVM</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -105,21 +111,21 @@
                     <p>iLearnML lets people learn machine learning optimization algorithms in an easy visual way</p>
                     <ul>
                         <li>
-                            <img src= "{{ url_for('static',filename='styles/assets/images/about-icon-02.png') }}" alt="">
+                            <img src="assets/images/about-icon-02.png" alt="">
                             <div class="text">
                                 <h6>3D visual representation</h6>
                                 <br>
                             </div>
                         </li>
                         <li>
-                            <img src="{{ url_for('static',filename='styles/assets/images/about-icon-01.png') }}" alt="">
+                            <img src="assets/images/about-icon-01.png" alt="">
                             <div class="text">
                                 <h6>easy to understand explanations and examples</h6>
                                 <br>
                             </div>
                         </li>
                         <li>
-                            <img src="{{ url_for('static',filename='styles/assets/images/about-icon-03.png') }}" alt="">
+                            <img src="assets/images/about-icon-03.png" alt="">
                             <div class="text">
                                 <h6>score Leaderboard for the best optimizations</h6>
                                 <br>
@@ -128,7 +134,7 @@
                     </ul>
                 </div>
                 <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                    <img src="{{ url_for('static',filename='styles/assets/images/gd_exmpl.png') }}" class="rounded img-fluid d-block mx-auto" alt="App">
+                    <img src="assets/images/gd_exmpl.png" class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
             </div>
         </div>
@@ -143,31 +149,31 @@
                 <div class="owl-carousel owl-theme">
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-01.png') }}" alt=""></i>
+                            <i><img src="assets/images/service-icon-01.png" alt=""></i>
                         </div>
-                        <h5 class="service-title">First Box Service</h5>
-                        <p>Aenean vulputate massa sed neque consectetur, ac fringilla quam aliquet. Sed a enim nec eros tempor cursus at id libero.</p>
-                        <a href="#" class="main-button">Read More</a>
+                        <h5 class="service-title">Gradient Decent</h5>
+                        <p>Our grdient decent notebook would help you learn the basics about this algorithm</p>
+                        <a href="gradient%20decent.html" class="main-button">The Notebook</a>
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-02.png') }}" alt=""></i>
+                            <i><img src="assets/images/service-icon-02.png" alt=""></i>
                         </div>
-                        <h5 class="service-title">Second Box Title</h5>
-                        <p>Pellentesque vitae urna ut nisi viverra tristique quis at dolor. In non sodales dolor, id egestas quam. Aliquam erat volutpat. </p>
-                        <a href="#" class="main-button">Discover More</a>
+                        <h5 class="service-title">SVM</h5>
+                        <p>Our SVM notebook would help you learn the basics about this learning algorithm</p>
+                        <a href="#" class="main-button">The Notebook</a>
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-03.png') }}" alt=""></i>
+                            <i><img src="assets/images/service-icon-03.png" alt=""></i>
                         </div>
-                        <h5 class="service-title">Third Title Box</h5>
-                        <p>Quisque finibus libero augue, in ultrices quam dictum id. Aliquam quis tellus sit amet urna tincidunt bibendum.</p>
-                        <a href="#" class="main-button">More Detail</a>
+                        <h5 class="service-title">Newton</h5>
+                        <p>Our Newton notebook would help you learn the basics about this optimization algorithm</p>
+                        <a href="#" class="main-button">The Notebook</a>
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-02.png') }}" alt=""></i>
+                            <i><img src="assets/images/service-icon-02.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Fourth Service Box</h5>
                         <p>Fusce sollicitudin feugiat risus, tempus faucibus arcu blandit nec. Duis auctor dolor eu scelerisque vestibulum.</p>
@@ -175,7 +181,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-01.png') }}" alt=""></i>
+                            <i><img src="assets/images/service-icon-01.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Fifth Service Title</h5>
                         <p>Curabitur aliquam eget tellus id porta. Proin justo sapien, posuere suscipit tortor in, fermentum mattis elit.</p>
@@ -183,7 +189,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-03.png') }}" alt=""></i>
+                            <i><img src="assets/images/service-icon-03.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Sixth Box Title</h5>
                         <p>Ut nibh velit, aliquam vitae pellentesque nec, convallis vitae lacus. Aliquam porttitor urna ut pellentesque.</p>
@@ -191,7 +197,7 @@
                     </div>
                     <div class="item service-item">
                         <div class="icon">
-                            <i><img src="{{ url_for('static',filename='styles/assets/images/service-icon-01.png') }}" alt=""></i>
+                            <i><img src="assets/images/service-icon-01.png" alt=""></i>
                         </div>
                         <h5 class="service-title">Seventh Title Box</h5>
                         <p>Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices malesuada odio. Donec non quam.</p>
@@ -209,16 +215,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                    <img src="{{ url_for('static',filename='styles/assets/images/left-image.png') }}" class="rounded img-fluid d-block mx-auto" alt="App">
+                    <img src="assets/images/left-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
                 <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
                     <div class="left-heading">
-                        <h5>Vivamus sodales nisi id ante molestie venenatis</h5>
+                        <h5>About </h5>
                     </div>
                     <div class="left-text">
-                        <p>This template is <a href="#">last updated on 20 August 2019 </a>for main menu drop-down arrow and sub menu text color. Duis auctor dolor eu scelerisque vestibulum. Vestibulum lacinia, nisl sit amet tristique condimentum. <br><br>
-                            Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices malesuada odio. Donec non quam euismod, mattis dui a, ultrices nisi.</p>
-                        <a href="#about2" class="main-button">Discover More</a>
+                        <p> <br>Machine Learning is taking a bigger part in the lives of all of us and because of that we think that every one should know how it works.<br>
+                            Useing iLearnML we hope to develop interactive, visualization-based program for teaching selected subjects in ML to nonmajors and highschool students
+                            and allow advance users an easy way to visualize the ML models they build. </p>
+                        <a href="#welcome" class="main-button">Home</a>
                     </div>
                 </div>
             </div>
@@ -233,20 +240,21 @@
 
     
     <!-- jQuery -->
-    <script src="{{ url_for('static',filename='styles/assets/js/jquery-2.1.0.min.js') }}"></script>
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="{{ url_for('static',filename='styles/assets/js/popper.js') }}"></script>
-    <script src="{{ url_for('static',filename='styles/assets/js/bootstrap.min.js') }}"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
     <!-- Plugins -->
-    <script src="{{ url_for('static',filename='styles/assets/js/scrollreveal.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='styles/assets/js/waypoints.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='styles/assets/js/jquery.counterup.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='styles/assets/js/imgfix.min.js') }}"></script> 
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
     
     <!-- Global Init -->
-    <script src="{{ url_for('static',filename='styles/assets/js/custom.js') }}"></script>
+    <script src="assets/js/custom.js"></script>
 
   </body>
 </html>
