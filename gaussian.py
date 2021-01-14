@@ -24,8 +24,7 @@ class Gaussian(Trainer):
         super().__init__(grid_x, grid_y, lr, epochs, opt, x, y)
         self.g_list = [Gaussian_helper(*i) for i in apc]
 
-        url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
-        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}$xmin=-{grid_x}$ymax={grid_y}$ymin=-{grid_y}$"
 
         self.f_str = ""
         for a, px, py, c in apc:
@@ -46,16 +45,17 @@ class Gaussian(Trainer):
           points_str+=(str)(self.Xs[i])+","+(str)(self.Ys[i])+","+(str)(self.Zs[i])+"|"
         points_str=points_str[:-1]
 
-        src= f"func={self.f_str}$points={points_str}"
+        src=self.disp_url+f"func={self.f_str}$points={points_str}"
         return src
-def runGaussian():
+
+def runGaussian(x=None,y=None,lr=0.5,opt=SGD):
     sizes = []
     for ix in [-15,0,15]:
         for iy in [-15,0,15]:
             sizes.append((50,ix,iy,5))
     grid_x = 30
     grid_y = 30
-    G = Gaussian(sizes, grid_x, grid_y)
+    G = Gaussian(sizes, grid_x, grid_y,x=x,y=y,lr=lr,opt=opt)
     Xs, Ys, Zs = G.train()
     src = G.display()
     return src

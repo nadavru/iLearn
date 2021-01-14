@@ -402,5 +402,17 @@
     });
     updateGraphFunc();
 </script>
+<form action="/{{func}}/" methhods=['POST']>
+    <input name="lr" text ="{{lr}}" placeholder="learning rate">
+    <input name="x" placeholder="x">
+    <input name="y" placeholder="y">
+    <input type="radio" id="SGD" name="opt" value="SGD">
+    <label for="male">SGD</label>
+    <input type="radio" id="MomentumSGD" name="opt" value="MomentumSGD">
+    <label for="female">MomentumSGD</label>
+    <input type="radio" id="Newton" name="opt" value="Newton">
+    <label for="other">Newton</label>
+    <button name="send" type="submit">GO</button>
+</form>
 </body>
 </html>

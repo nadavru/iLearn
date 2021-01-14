@@ -8,7 +8,7 @@ class Rosenbrock(Trainer):
         super().__init__(grid_x, grid_y, lr, epochs, opt, x, y)
 
         url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
-        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}$xmin=-{grid_x}$ymax={grid_y}$ymin=-{grid_y}$"
 
         self.a, self.b = a, b
         self.f_str = f"({a}-x)^2+{b}*(y-x^2)^2"
@@ -35,11 +35,11 @@ class Rosenbrock(Trainer):
           points_str+=(str)(self.Xs[i])+","+(str)(self.Ys[i])+","+(str)(self.Zs[i])+"|"
         points_str=points_str[:-1]
 
-        src= f"func={self.f_str}&points={points_str}"
+        src= f"func={self.f_str}$points={points_str}"
         return src
 
-def runRosenbrock():
-    Ro = Rosenbrock(lr=0.1**5, opt=SGD, grid_x=10, grid_y=10, epochs=100, x=5, y=-5)
+def runRosenbrock(lr=0.1**5, opt=SGD, epochs=100, x=5, y=-5):
+    Ro = Rosenbrock(lr=lr, opt=opt, grid_x=10, grid_y=10, epochs=100, x=x, y=y)
     Xs, Ys, Zs = Ro.train()
     src = Ro.display()
     return src
