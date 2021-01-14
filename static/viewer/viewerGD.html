@@ -12,73 +12,72 @@
   <link rel="stylesheet" href="mathbox.css">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 	<style>
+
 		#paramForm {
 			display : none;
 		}
 	</style>
 	<link rel = "icon" href ="title_icon.png" type = "image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../templates/assets/css/templatemo-art-factory.css">
 </head>
 <body>
 <div id="paramForm">
+	<div class="contact-form">
 	<table>
+
 		<form>
 				<tr>
-					<td>
 						Function:
-						<input type="text" id="func" name="func" value="sin(x^2+y^2)">
-					</td>
-					<td>
+						<input type="text" id="func" name="func" value="sin(x^2+y^2)" class="contact-field">
 						Style:
-						<select id="style" >
+						<select id="style" class="contact-field">
 							<option value="rb">red blue</option>
 							<option value="rainbow">rainbow</option>
 						  <option value="grayscale">grayscale</option>
 						  <option value="solid blue">solid blue</option>
 						</select>
-					</td>
-					<td>
 						View wireframe:
-						<select id="wireframe" >
+						<select id="wireframe" class="contact-field">
 						  <option value="true">yes</option>
 						  <option value="false">no</option>
 						</select>
-					</td>
-					<td>
 						View shadow:
-						<select id="shadow" >
+						<select id="shadow" class="contact-field">
 							<option value="false">no</option>
 							<option value="true">yes</option>
 						</select>
-					</td>
-					<td>
-
+				</tr>
+				<tr>
+					<td >
+						xMax : <input class="contact-field" type="text" id="xmax" value="3" > xMin : <input class="contact-field" type="text" id="xmin" value="-3"> yMax : <input class="contact-field" type="text" id="ymax" value="3"> YMin : <input class="contact-field" type="text" id="ymin" value="-3"> zMax : <input class="contact-field" type="text" id="zmax" value="0"> zMin : <input class="contact-field" type="text" id="zmin" value="0">
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4">
-						xMax : <input type="text" id="xmax" value="3"> xMin : <input type="text" id="xmin" value="-3"> yMax : <input type="text" id="ymax" value="3"> YMin : <input type="text" id="ymin" value="-3"> zMax : <input type="text" id="zmax" value="0"> zMin : <input type="text" id="zmin" value="0">
+					<td >
+						startX : <input class="contact-field" type="text" id="startx" value="0"> startY : <input class="contact-field" type="text" id="starty" value="0"> startZ : <input class="contact-field" type="text" id="startz" value="0">endX : <input class="contact-field" type="text" id="endx" value="0"> endY : <input class="contact-field" type="text" id="endy" value="0"> endZ : <input class="contact-field" type="text" id="endz" value="0">
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4">
-						startX : <input type="text" id="startx" value="0"> startY : <input type="text" id="starty" value="0"> startZ : <input type="text" id="startz" value="0">endX : <input type="text" id="endx" value="0"> endY : <input type="text" id="endy" value="0"> endZ : <input type="text" id="endz" value="0">
-						<button type="button" onclick="updateGraph()">update Graph</button>
+					<td >
+						<button class="main-button" class="main-button" type="button" onclick="updateGraph()" >update Graph</button>
 					</td>
 				</tr>
 		</form>
-	</table>
-</div>
 
+	</table>
+	</div>
+</div>
+	<div class="contact-form">
 		<table>
 			<tr>
 				<td>
-					<button type="button" onclick="NextVec()">Next Step</button>
-					<button type="button" onclick="PrevVec()">Previous Step</button>
+					<button type="button" class="main-button" onclick="NextVec()">Next Step</button>
+					<button class="main-button" type="button" onclick="PrevVec()">Previous Step</button>
 				</td>
 
 			</tr>
 		</table>
-
+	</div>
   <script>
     document.getElementById("paramForm").style.display = "none";
     var mathbox = mathBox({
