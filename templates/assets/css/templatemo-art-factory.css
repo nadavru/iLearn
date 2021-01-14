@@ -1204,9 +1204,9 @@ accordions
 course
 --------------------------------------------- 
 */
-.center {
-  margin-left: 100;
-  margin-right: 100;
+#course div {
+  padding : 25px 50px 25px 50px;
+  border-bottom: 1px solid #eee;
 }
 
 /* 

@@ -13,7 +13,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <style>
         #paramForm {
-
+            display : none;
         }
     </style>
 </head>
@@ -80,6 +80,9 @@
 
 <script>
     document.getElementById("paramForm").style.display = "none";
+    var opt = "{{opt}}";
+    radiobtn = document.getElementById(opt);
+    radiobtn.checked = true;
     var mathbox = mathBox({
         plugins: ['core', 'controls', 'cursor', 'mathbox'],
         controls: {klass: THREE.OrbitControls}
@@ -225,6 +228,10 @@
             for (var i = 0; i < points.length; i++) {
                 var start = points[i][currVecNum].split(',');
                 var end = points[i][currVecNum + 1].split(',');
+                if(i==0){
+                    document.getElementById("x").value = start[0];
+                    document.getElementById("y").value = start[1];
+                }
                 var vecData = view.array({
                     width: 1, items: 2, channels: 3,
                     data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
@@ -261,6 +268,10 @@
             else{
                 var start = points[i][currVecNum].split(',');
                 var end = points[i][currVecNum+1].split(',');
+                if(i==0){
+                    document.getElementById("x").value = start[0];
+                    document.getElementById("y").value = start[1];
+                }
                 var vecData = view.array({
                     width: 1, items: 2, channels: 3,
                     data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
@@ -291,12 +302,15 @@
         else{
             debugger;
             currVecNum--;
-            for (var i =0 ;i<points.length;i++){
                 for (var i =0 ;i<points.length;i++) {
                     if (points[i].length <= currVecNum + 1) {
                     } else {
                         var start = points[i][currVecNum].split(',');
                         var end = points[i][currVecNum + 1].split(',');
+                        if(i==0){
+                            document.getElementById("x").value = start[0];
+                            document.getElementById("y").value = start[1];
+                        }
                         var vecData = view.array({
                             width: 1, items: 2, channels: 3,
                             data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
@@ -307,7 +321,7 @@
                         }
                     }
                 }
-            }
+
         }
         displayTrace = !displayTrace;
     };
@@ -404,8 +418,8 @@
 </script>
 <form action="/{{func}}/" methhods=['POST']>
     <input name="lr" text ="{{lr}}" placeholder="learning rate">
-    <input name="x" placeholder="x">
-    <input name="y" placeholder="y">
+    <input id = "x" name="x" placeholder="x">
+    <input id = "y" name="y" placeholder="y">
     <input type="radio" id="SGD" name="opt" value="SGD">
     <label for="male">SGD</label>
     <input type="radio" id="MomentumSGD" name="opt" value="MomentumSGD">

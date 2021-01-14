@@ -322,7 +322,6 @@
 			window.alert("This is the first step");
 		else{
 			currVecNum--;
-			for (var i =0 ;i<points.length;i++){
 					for (var i =0 ;i<points.length;i++) {
 						if (points[i].length <= currVecNum + 1) {
 						} else {
@@ -333,11 +332,10 @@
 								data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
 							});
 							vec[i].set("points", vecData);
-								trace.pop().remove();
+							trace.pop().remove();
 
 						}
 					}
-				}
 			}
 			displayTrace = !displayTrace;
 		if(currCurveNum==0){
