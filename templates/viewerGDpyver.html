@@ -81,7 +81,7 @@
 <script>
     document.getElementById("paramForm").style.display = "none";
     radiobtn = document.getElementById("{{opt}}");
-    radiobtn.checked = true;
+    //radiobtn.checked = true;
     var mathbox = mathBox({
         plugins: ['core', 'controls', 'cursor', 'mathbox'],
         controls: {klass: THREE.OrbitControls}
@@ -416,9 +416,9 @@
     updateGraphFunc();
 </script>
 <form action="/{{func}}/" methhods=['POST']>
-    <input name="lr" text ="{{lr}}" placeholder="learning rate">
-    <input id = "x" name="x" placeholder="x">
-    <input id = "y" name="y" placeholder="y">
+    <a>learning rate:</a><input name="lr" value ="{{lr}}" placeholder="learning rate">
+    <a>x:</a><input id = "x" name="x" placeholder="x">
+    <a>y:</a><input id = "y" name="y" placeholder="y">
     <input type="radio" id="SGD" name="opt" value="SGD">
     <label for="male">SGD</label>
     <input type="radio" id="MomentumSGD" name="opt" value="MomentumSGD">
