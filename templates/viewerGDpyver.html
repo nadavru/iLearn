@@ -80,8 +80,7 @@
 
 <script>
     document.getElementById("paramForm").style.display = "none";
-    var opt = "{{opt}}";
-    radiobtn = document.getElementById(opt);
+    radiobtn = document.getElementById("{{opt}}");
     radiobtn.checked = true;
     var mathbox = mathBox({
         plugins: ['core', 'controls', 'cursor', 'mathbox'],

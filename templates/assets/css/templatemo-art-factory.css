@@ -1204,9 +1204,10 @@ accordions
 course
 --------------------------------------------- 
 */
-#course div {
-  padding : 25px 50px 25px 50px;
+#course {
+  padding: 120px 0px;
   border-bottom: 1px solid #eee;
+
 }
 
 /* 
