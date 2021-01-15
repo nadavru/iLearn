@@ -138,7 +138,6 @@
                             x.style.display = "none";
                         }
                     }else {
-                        debugger;
                         document.getElementById(p[0]).value = decodeURIComponent(p[1]);
                     }
                 }
@@ -241,7 +240,6 @@
                 var start = points[i][currVecNum].split(',');
                 var end = points[i][currVecNum + 1].split(',');
                 if(i==0){
-                    debugger;
                     document.getElementById("x").value = start[0];
                     document.getElementById("y").value = start[1];
                 }
@@ -313,7 +311,6 @@
         if(currVecNum==0)
             window.alert("This is the first step");
         else{
-            debugger;
             currVecNum--;
             for (var i =0 ;i<points.length;i++) {
                 if (points[i].length <= currVecNum + 1) {
