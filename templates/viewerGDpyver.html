@@ -77,10 +77,12 @@
 
     </tr>
 </table>
+<br>
 <form action="/{{func}}/" methhods=['POST']>
-    <input name="lr" text ="{{lr}}" placeholder="learning rate">
-    <input id = "x" name="x" placeholder="x">
-    <input id = "y" name="y" placeholder="y">
+    <a>learning rate:</a><input name="lr" value ="{{lr}}" placeholder="learning rate">
+    <a>x:</a><input id = "x" name="x" placeholder="x">
+    <a>y:</a><input id = "y" name="y" placeholder="y">
+    <a>epochs:</a><input id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs">
     <input type="radio" id="SGD" name="opt" value="SGD">
     <label for="male">SGD</label>
     <input type="radio" id="MomentumSGD" name="opt" value="MomentumSGD">
@@ -136,6 +138,7 @@
                             x.style.display = "none";
                         }
                     }else {
+                        debugger;
                         document.getElementById(p[0]).value = decodeURIComponent(p[1]);
                     }
                 }
@@ -238,6 +241,7 @@
                 var start = points[i][currVecNum].split(',');
                 var end = points[i][currVecNum + 1].split(',');
                 if(i==0){
+                    debugger;
                     document.getElementById("x").value = start[0];
                     document.getElementById("y").value = start[1];
                 }
@@ -309,27 +313,27 @@
         if(currVecNum==0)
             window.alert("This is the first step");
         else{
-
+            debugger;
             currVecNum--;
-                for (var i =0 ;i<points.length;i++) {
-                    if (points[i].length <= currVecNum + 1) {
-                    } else {
-                        var start = points[i][currVecNum].split(',');
-                        var end = points[i][currVecNum + 1].split(',');
-                        if(i==0){
-                            document.getElementById("x").value = start[0];
-                            document.getElementById("y").value = start[1];
-                        }
-                        var vecData = view.array({
-                            width: 1, items: 2, channels: 3,
-                            data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
-                        });
-                        vec[i].set("points", vecData);
-                        if (!displayTrace) {
-                            trace.pop().remove();
-                        }
+            for (var i =0 ;i<points.length;i++) {
+                if (points[i].length <= currVecNum + 1) {
+                } else {
+                    var start = points[i][currVecNum].split(',');
+                    var end = points[i][currVecNum + 1].split(',');
+                    if(i==0){
+                        document.getElementById("x").value = start[0];
+                        document.getElementById("y").value = start[1];
+                    }
+                    var vecData = view.array({
+                        width: 1, items: 2, channels: 3,
+                        data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
+                    });
+                    vec[i].set("points", vecData);
+                    if (!displayTrace) {
+                        trace.pop().remove();
                     }
                 }
+            }
 
         }
         displayTrace = !displayTrace;
