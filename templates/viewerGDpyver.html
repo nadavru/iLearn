@@ -86,19 +86,17 @@
     <a> x: </a><input class="contact-field" id = "x" name="x" placeholder="x">
     <a> y: </a><input class="contact-field" id = "y" name="y" placeholder="y">
     <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs">
-    <input type="radio" id="SGD" name="opt" value="SGD">
-    <label for="SGD">SGD</label>
-    <input type="radio" id="MomentumSGD" name="opt" value="MomentumSGD">
-    <label for="MomentumSGD">MomentumSGD</label>
-    <input type="radio" id="Newton" name="opt" value="Newton">
-    <label for="Newton">Newton</label>
+    <select id="opt" >
+        <option value="SGD">SGD</option>
+        <option value="MomentumSGD">MomentumSGD</option>
+        <option value="Newton">Newton</option>
+    </select>
     <button class="main-button" name="send" type="submit">GO</button>
 </form>
 </div>
 <script>
     document.getElementById("paramForm").style.display = "none";
-    radiobtn = document.getElementById("{{opt}}");
-    radiobtn.checked = true;
+    document.getElementById("opt").value = "{{opt}}";
     var mathbox = mathBox({
         plugins: ['core', 'controls', 'cursor', 'mathbox'],
         controls: {klass: THREE.OrbitControls}
