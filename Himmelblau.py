@@ -85,8 +85,8 @@ class Himmelblau(Trainer):
         src = src[:-1]
         
         return src
-def runHimmelblau(opt=Newton, lr=0.1, x=4, y=4):
-    Hi = Himmelblau(opt=opt, lr=lr, x=x, y=y)
+def runHimmelblau(opt=Newton,epochs=50,lr=0.001, x=4, y=4):
+    Hi = Himmelblau(opt=opt,epochs=epochs, lr=lr, x=x, y=y)
     Xs, Ys, Zs = Hi.train()
     src = Hi.display()
     return src

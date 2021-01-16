@@ -1,10 +1,11 @@
 from learning import Trainer
 from math import exp
 from optimizers import *
+
 class SVM(Trainer):
 
-  def __init__(self, group_size, p0, p1, grid_x=50, grid_y=50, lr=0.5, epochs=10): 
-        super().__init__(grid_x, grid_y, lr, epochs)
+  def __init__(self, group_size, p0, p1, grid_x=50, grid_y=50, lr=0.5, epochs=10, opt=SGD): 
+        super().__init__(grid_x, grid_y, lr, epochs, opt)
         (x0, y0, var0) = p0
         (x1, y1, var1) = p1
         self.group_size = group_size
@@ -13,12 +14,12 @@ class SVM(Trainer):
 
         self.data = np.concatenate((group0, group1))
 
-        url = "https://htmlpreview.github.io/?https://github.com/nadavru/iLearn/blob/iLearnML/scatter.html#"
+        url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerSVM.html#"
         #grid = 30
-        self.disp_url = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        self.disp_url = f"xmax={grid_x}$xmin=-{grid_x}$ymax={grid_y}$ymin=-{grid_y}$"
         
-        url2 = "https://htmlpreview.github.io/?https://github.com/nadavru/iLearn/blob/iLearnML/ilearnml_graph_viewer.html#"
-        self.disp_url2 = f"xmax={grid_x}&xmin=-{grid_x}&ymax={grid_y}&ymin=-{grid_y}&"
+        url2 = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
+        self.disp_url2 = f"xmax={grid_x}$xmin=-{grid_x}$ymax={grid_y}$ymin=-{grid_y}$"
 
         #self.X, self.Y = np.concatenate((self.group0[:,0],self.group1[:,0])), np.concatenate((self.group0[:,1],self.group1[:,1]))
 
@@ -79,7 +80,7 @@ class SVM(Trainer):
       points_blue += f"{x},{y},0"+"|"
     points_blue=points_blue[:-1]
 
-    src= f"points_red={points_red}&points_blue={points_blue}&vec={points_str}"
+    src=self.disp_url+f"points_red={points_red}$points_blue={points_blue}$vec={points_str}"
     return src
   
   def display2(self): 
@@ -93,10 +94,10 @@ class SVM(Trainer):
     
     f_str = f"{x_sum}*x+{y_sum}*y".replace("+-","-")
 
-    src=f"func={f_str}&points={points_str}"
+    src=self.disp_url2+f"func={f_str}$points={points_str}"
     return src
-def runSVM():
-    T = SVM(50, (-5,-5,5), (5,5,5), lr=0.5, epochs=30)
+def runSVM(lr=0.5, epochs=30):
+    T = SVM(50, (-5,-5,5), (5,5,5), lr=0.5, epochs=epochs)
     Xs, Ys, Zs = T.train()
     src = T.display()
     return src

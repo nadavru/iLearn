@@ -31,8 +31,8 @@ class Beale(Trainer):
         src=self.disp_url+f"func={self.f_str}$points={points_str}"
         return src
 
-def runBeale(x=4,y=4,opt=MomentumSGD,lr=0.000001):
-    Be = Beale(opt=opt, lr=lr, x=x, y=y)
+def runBeale(x=4,y=4,epochs=50,opt=MomentumSGD,lr=0.000001):
+    Be = Beale(opt=opt,epochs=epochs, lr=lr, x=x, y=y)
     Xs, Ys, Zs = Be.train()
     src = Be.display()
     return src

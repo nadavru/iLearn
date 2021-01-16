@@ -46,8 +46,8 @@ class Absfunc(Trainer):
         src=self.disp_url+f"func={self.f_str}$points={points_str}"
         return src
 
-def runABS(opt=SGD, lr=1, x=10, y=0.5):
-    Abs = Absfunc(opt=SGD, lr=1, x=10, y=0.5)
+def runABS(opt=SGD,epochs=50, lr=1, x=10, y=0.5):
+    Abs = Absfunc(opt=SGD,epochs =epochs,lr=1, x=10, y=0.5)
     Xs, Ys, Zs = Abs.train()
     src = Abs.display()
     return src

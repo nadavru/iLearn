@@ -33,8 +33,8 @@ class Rastrigin(Trainer):
         src=self.disp_url+f"func={self.f_str}$points={points_str}"
         return src
 
-def runRastrigin(lr=0.0001, opt=SGD, x=None, y=None):
-    Ra = Rastrigin(lr=lr,opt=opt,x=x,y=y)
+def runRastrigin(lr=0.0001,epochs=50, opt=SGD, x=None, y=None):
+    Ra = Rastrigin(lr=lr,epochs=epochs,opt=opt,x=x,y=y)
     Xs, Ys, Zs = Ra.train()
     src = Ra.display()
     return src

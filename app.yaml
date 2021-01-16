@@ -8,7 +8,10 @@ env_variables:
 
 handlers:
 - url: /viewer/
-  static_dir: viewer
+  static_dir: static/viewer
+
+- url: /templates/
+  static_dir: templates
 
 - url: /iLearnML/
   static_dir: templates

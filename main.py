@@ -23,73 +23,68 @@ def showGaussian():
     learningRate = float(request.args.get("lr", 0.5))
     x = float(request.args.get("x", 1))
     y = float(request.args.get("y", 1))
+    epochs = int(request.args.get("epochs", 50))
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
-    return render_template("viewerGDpyver.html",pyString = runGaussian(lr=learningRate,x=x,y=y,opt=opt) ,opt = optString,lr = learningRate, func = "Gaussian")
+    return render_template("viewerGDpyver.html",pyString = runGaussian(lr=learningRate,x=x,y=y,opt=opt,epochs=epochs),epochs=epochs ,opt = optString,lr = learningRate, func = "Gaussian")
 
 @app.route('/Beale/',methods=['POST','GET'])
 def showBeale():    
     learningRate = float(request.args.get("lr", 0.000001))
     x = float(request.args.get("x", 4))
     y = float(request.args.get("y", 4))
+    epochs = int(request.args.get("epochs", 50))
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
-    return render_template("viewerGDpyver.html",pyString = runBeale(lr=learningRate,x=x,y=y,opt=opt) ,opt = optString,lr = learningRate, func = "Beale")
+    return render_template("viewerGDpyver.html",pyString = runBeale(lr=learningRate,x=x,y=y,opt=opt,epochs=epochs),epochs=epochs,opt = optString,lr = learningRate, func = "Beale")
 
 @app.route('/Himmelblau/',methods=['POST','GET'])
 def showHimmelblau():    
-    learningRate = float(request.args.get("lr", 0.1))
+    learningRate = float(request.args.get("lr", 0.001))
     x = float(request.args.get("x", 4))
     y = float(request.args.get("y", 4))
+    epochs = int(request.args.get("epochs", 50))
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
-    return render_template("viewerGDpyver.html",pyString = runHimmelblau(lr=learningRate,x=x,y=y,opt=opt),opt = optString,lr = learningRate,func = "Himmelblau")
+    return render_template("viewerGDpyver.html",pyString = runHimmelblau(lr=learningRate,x=x,y=y,opt=opt,epochs=epochs),epochs=epochs,opt = optString,lr = learningRate,func = "Himmelblau")
 
 @app.route('/Rosenbrock/',methods=['POST','GET'])
 def showRosenbrock():    
     learningRate = float(request.args.get("lr", 0.1**5))
     x = float(request.args.get("x", 5))
     y = float(request.args.get("y", -5))
+    epochs = int(request.args.get("epochs", 100))
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
-    return render_template("viewerGDpyver.html",pyString = runRosenbrock(lr=learningRate,x=x,y=y,opt=opt),opt = optString,lr = learningRate,func = "Rosenbrock")
+    return render_template("viewerGDpyver.html",pyString = runRosenbrock(lr=learningRate,x=x,y=y,opt=opt,epochs=epochs),epochs=epochs,opt = optString,lr = learningRate,func = "Rosenbrock")
 
 @app.route('/ABS/',methods=['POST','GET'])
 def showABS():    
     learningRate = float(request.args.get("lr", 1))
     x = float(request.args.get("x", 10))
     y = float(request.args.get("y", 0.5))
+    epochs = int(request.args.get("epochs", 50))
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
-    return render_template("viewerGDpyver.html",pyString = runABS(lr=learningRate,x=x,y=y,opt=opt),opt = optString,lr = learningRate,func = "ABS")
+    return render_template("viewerGDpyver.html",pyString = runABS(lr=learningRate,x=x,y=y,opt=opt,epochs=epochs),epochs=epochs,opt = optString,lr = learningRate,func = "ABS")
 
 @app.route('/Rastrigin/',methods=['POST','GET'])
 def showRastrigin():    
     learningRate = float(request.args.get("lr", 0.0001))
     x = float(request.args.get("x", None))
     y = float(request.args.get("y", None))
+    epochs = int(request.args.get("epochs", 50))
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
-    return render_template("viewerGDpyver.html",pyString = runRastrigin(lr=learningRate,x=x,y=y,opt=opt),opt = optString,lr = learningRate,func = "Rastrigin")
+    return render_template("viewerGDpyver.html",pyString = runRastrigin(lr=learningRate,x=x,y=y,opt=opt,epochs=epochs),epochs=epochs,opt = optString,lr = learningRate,func = "Rastrigin")
+
+@app.route('/SVM/',methods=['POST','GET'])
+def showSVM():    
+    learningRate = float(request.args.get("lr", 0.0001))
+    epochs = int(request.args.get("epochs", 30))
+    return render_template("viewerSVMpyver.html",pyString = runSVM(lr=learningRate,epochs = epochs),epochs = epochs,lr = learningRate,func = "SVM")
 
 
-@app.route('/')
-def main():
-    algo = request.args.get('algo')
-    if(algo == "Gaussian"):
-        return render_template("viewerGDpyver.html",pyString = runGaussian(),opt = "SGD",lr = 0.5,func = "Gaussian")
-    elif(algo == "Beale"):
-        return render_template("viewerGDpyver.html",pyString = runBeale(),opt="MomentumSGD",lr=0.000001,func = "Beale")
-    elif(algo == "Himmelblau"):
-        return render_template("viewerGDpyver.html",pyString = runHimmelblau(),opt="Newton", lr=0.1,func = "Himmelblau")
-    elif(algo == "Rastrigin"):
-        return render_template("viewerGDpyver.html",pyString = runRastrigin(),lr=0.0001, opt="SGD",func = "Rastrigin")
-    elif(algo == "SVM"):
-        return render_template("viewerGDpyver.html",pyString = runSVM(),func = "SVM")
-    elif(algo == "Rosenbrock"):
-        return render_template("viewerGDpyver.html",pyString = runRosenbrock(),opt="SGD",lr = 0.1**5,func = "Rosenbrock")
-    elif(algo == "ABS"):
-        return render_template("viewerGDpyver.html",pyString = runABS(),opt="SGD", lr=1,func = "ABS")
  
 
 

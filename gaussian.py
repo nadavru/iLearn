@@ -48,14 +48,14 @@ class Gaussian(Trainer):
         src=self.disp_url+f"func={self.f_str}$points={points_str}"
         return src
 
-def runGaussian(x=None,y=None,lr=0.5,opt=SGD):
+def runGaussian(x=None,y=None,epochs=50,lr=0.5,opt=SGD):
     sizes = []
     for ix in [-15,0,15]:
         for iy in [-15,0,15]:
             sizes.append((50,ix,iy,5))
     grid_x = 30
     grid_y = 30
-    G = Gaussian(sizes, grid_x, grid_y,x=x,y=y,lr=lr,opt=opt)
+    G = Gaussian(sizes, grid_x,grid_y,epochs=epochs,x=x,y=y,lr=lr,opt=opt)
     Xs, Ys, Zs = G.train()
     src = G.display()
     return src
