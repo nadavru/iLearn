@@ -82,16 +82,16 @@
     </tr>
 </table>
 <form action="/{{func}}/" methhods=['POST']>
-    <a>learning rate:</a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate">
-    <a>x:</a><input class="contact-field" id = "x" name="x" placeholder="x">
-    <a>y:</a><input class="contact-field" id = "y" name="y" placeholder="y">
+    <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate">
+    <a> x: </a><input class="contact-field" id = "x" name="x" placeholder="x">
+    <a> y: </a><input class="contact-field" id = "y" name="y" placeholder="y">
     <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs">
     <input type="radio" id="SGD" name="opt" value="SGD">
-    <label for="male">SGD</label>
+    <label for="SGD">SGD</label>
     <input type="radio" id="MomentumSGD" name="opt" value="MomentumSGD">
-    <label for="female">MomentumSGD</label>
+    <label for="MomentumSGD">MomentumSGD</label>
     <input type="radio" id="Newton" name="opt" value="Newton">
-    <label for="other">Newton</label>
+    <label for="Newton">Newton</label>
     <button class="main-button" name="send" type="submit">GO</button>
 </form>
 </div>
@@ -127,31 +127,33 @@
 		points=[];
 		curves=[];
         var hashParams = "{{pyString}}";
-       			for (var i = 0; i < hashParams.length; i++) {
-				var p = hashParams[i].split('=');
-				if (p[0]=="points"){
-					points=p[1].split('*');
-					for (var j=0;j<points.length;j++){
-						points[j]= points[j].split('|');
-					}
-				}else {
-					if (p[0]=="curves") {
-						curves = p[1].split('|');
-					}
-					else {
-						if (p[0] == "hide") {
-							var x = document.getElementById("paramForm");
-							if (p[1] == "true") {
-								x.style.display = "block";
-							} else {
-								x.style.display = "none";
-							}
-						} else {
-							document.getElementById(p[0]).value = decodeURIComponent(p[1]);
-						}
-					}
-				}
-			}
+        if(hashParams.length != 0) {
+            hashParams = hashParams.split('$');// substr(1) to remove the `#`
+            for (var i = 0; i < hashParams.length; i++) {
+                var p = hashParams[i].split('=');
+                if (p[0] == "points") {
+                    points = p[1].split('*');
+                    for (var j = 0; j < points.length; j++) {
+                        points[j] = points[j].split('|');
+                    }
+                } else {
+                    if (p[0] == "curves") {
+                        curves = p[1].split('|');
+                    } else {
+                        if (p[0] == "hide") {
+                            var x = document.getElementById("paramForm");
+                            if (p[1] == "true") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        } else {
+                            document.getElementById(p[0]).value = decodeURIComponent(p[1]);
+                        }
+                    }
+                }
+            }
+        }
 		var zFunc = Parser.parse(document.getElementById("func").value.toLowerCase()).toJSFunction(['x', 'y']);
 		var graphColorStyle = document.getElementById("style").value.toLowerCase();
 		var wireframe = document.getElementById("wireframe").value.toLowerCase();
@@ -274,6 +276,7 @@
 				});
 				vec[0].set("points", vecData);
 			}
+
 	}
 
 	// end of updateGraph function ==============================================================
