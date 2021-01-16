@@ -43,10 +43,10 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="index.html">Home</a></li>
-                        <li class="scroll-to-section"><a href="#DL">intro</a></li>
-                        <li class="scroll-to-section"><a href="#DL2">Perceptron</a></li>
-                        <li class="scroll-to-section"><a href="#DL3">optimize</a></li>
-                        <li class="scroll-to-section"><a href="#DL4">Demo</a></li>
+                        <li class="scroll-to-section"><a href="#course">intro</a></li>
+                        <li class="scroll-to-section"><a href="#course2">Perceptron</a></li>
+                        <li class="scroll-to-section"><a href="#course3">optimize</a></li>
+                        <li class="scroll-to-section"><a href="#course4">Demo</a></li>
                         <li class="submenu">
                             <a href="javascript:;">Introduction</a>
                             <ul>
@@ -87,22 +87,31 @@
 
 
 <!-- ***** Features Big Item Start ***** -->
-<div id="course">
-<section id="DL">
+
+<section id="course">
     <br>
-                <h2>Overview</h2>
+               <center> <h2>Overview</h2></center>
+    <div class="row">
+               <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix" >
                 <h5>Optimization is a core subject in ML. </h5>
                 <h5>What do we mean by optimization?</h5>
-                <h5> <br><br><br>
+                <h5>
                     In the context of ML, optimization is an iterative process of attempting to (typically) minimize a real valued function. Real valued functions come into play in ML as loss functions – functions that assess the performance of whatever ML construct (classifiers, self-driving cars, etc.) we want to create. 
                 </h5>
+               </div>
+              <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                  <img src="assets/images/opt2.png" class="rounded img-fluid d-block mx-auto" alt="App">
+              </div>
+    </div>
         <br>
 </section>
-    <section class="section" id="DL2">
+    <section class="section" id="course2">
+        <br>
+        <br>
+        <center><h2>Example:Perceptron</h2></center>
         <br>
         <div class="row">
-            <br><br>
-            <h2>Example:Perceptron</h2>
+
             <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix" >
                 <h5>
                     For example, let's look at the perceptron classifier. Perceptron is an early ML classifier whose operation is demonstrated in the attached illustration.
@@ -111,9 +120,10 @@
                                  <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     -Red points are below w.
                                  <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     -Blue points are above w.
                     <br><br> All these conditions are expressed mathematically in the illustration.
+                </h5>
             </div>
             <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                <img src="assets/images/perceptron.png">
+                <img src="assets/images/perceptron.png" class="rounded img-fluid d-block mx-auto" alt="App">
             </div>
         </div>
         <h5>
@@ -122,7 +132,8 @@
         <br>
 
     </section>
-    <section class="section" id="DL3">
+    <section class="section" id="course3">
+        <center><h2>how to optimaize</h2></center><br>
         <h5>How are going to obtain w? In the case of perceptron, we are going to define the following loss function:</h5>
         <table>
             <tr>
@@ -148,9 +159,10 @@
             <br><br>The L(w) we now have is a real valued function of two variables and can be optimized as such. A w for which L decreases represents an improved classifier over the training set.
 </h5>
     </section>
-    <section class="section" id="DL4">
+    <section class="section" id="course4">
         <br>
-        <h2>how to optimaize</h2>
+        <center><h2>how to optimaize</h2></center>
+        <br>
         <h5>
            The optimization process itself will be the focus of the next few chapters; it will be briefly presented here to complete the example. After we've established how the definition of L(w) allows us to properly assess the performance of our classifier, our task is to find its minimum.  
             <br>Since L(w) is not structured as 'standard' real valued function, obtaining a closed expression for that w would be too complicated. Instead, we would have to work gradually – starting with some random w and work iteratively towards w values for which L decreases. If our current point is w, we can identify the direction at which L  decreases most rapidly from w by considering it gradient – ∇L(w). The gradient points in the direction of steepest ascent, so moving in the opposite direction will lead us in the direction of steepest descent.
@@ -160,7 +172,9 @@
             <br>Applying this calculation repeatedly results in:
         </h5>
     </section>
-</div>
+<section class="section" id="course5">
+    <iframe src="https://i-learn-ml.oa.r.appspot.com/SVM/" width="100%" height="700" scrolling="no"> </iframe>
+</section>
 
 
 
