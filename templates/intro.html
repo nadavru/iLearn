@@ -43,10 +43,10 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="index.html">Home</a></li>
-                        <li class="scroll-to-section"><a href="#DL">introduction</a></li>
+                        <li class="scroll-to-section"><a href="#DL">intro</a></li>
                         <li class="scroll-to-section"><a href="#DL2">Perceptron</a></li>
                         <li class="scroll-to-section"><a href="#DL3">optimize</a></li>
-                        <li class="scroll-to-section"><a href="#DL4">Demonstration</a></li>
+                        <li class="scroll-to-section"><a href="#DL4">Demo</a></li>
                         <li class="submenu">
                             <a href="javascript:;">Introduction</a>
                             <ul>
@@ -90,6 +90,9 @@
 <div id="course">
 <section id="DL">
     <br>
+                <h2>Overview</h2>
+                <h5>Optimization is a core subject in ML. </h5>
+                <h5>What do we mean by optimization?</h5>
                 <h5> <br><br><br>
                     In the context of ML, optimization is an iterative process of attempting to (typically) minimize a real valued function. Real valued functions come into play in ML as loss functions – functions that assess the performance of whatever ML construct (classifiers, self-driving cars, etc.) we want to create. 
                 </h5>
@@ -99,20 +102,21 @@
         <br>
         <div class="row">
             <br><br>
-            <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
+            <h2>Example:Perceptron</h2>
+            <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix" >
                 <h5>
                     For example, let's look at the perceptron classifier. Perceptron is an early ML classifier whose operation is demonstrated in the attached illustration.
                     <br><br>&nbsp;&nbsp;&nbsp;&nbsp;  •	We are given a set of points on the plane (can be generalized to any dimension) – red and blue.
                     <br><br>&nbsp;&nbsp;&nbsp;&nbsp;  •	We want to find a line w such 
                                  <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     -Red points are below w.
                                  <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     -Blue points are above w.
+                    <br><br> All these conditions are expressed mathematically in the illustration.
             </div>
             <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                <img src="assets/images/perceptron.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                <img src="assets/images/perceptron.png">
             </div>
         </div>
         <h5>
-            <br><br> All these conditions are expressed mathematically in the illustration.
             <br><br> The initial set of labeled (red/blue) examples – the training set – is used to obtain w. Once we have w, any new data that we will pass through our classifier will be labeled as blue or red based on its relation to w.
         </h5>
         <br>
@@ -122,22 +126,23 @@
         <h5>How are going to obtain w? In the case of perceptron, we are going to define the following loss function:</h5>
         <table>
             <tr>
-                <img src="assets/images/mathExpression.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                <img src="assets/images/mathExpression.png">
             </tr>
         </table>
-        <h5>Let's break down this expression:
-            <br><br>&nbsp;&nbsp;&nbsp; &nbsp;    •The elements (x_1,y_1 ),…(x_n,y_n ) represent our training set.
-	        <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        - Each x_i represents a point/vector (not a vector component)
-	        <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        - Each y_i represents a label.
+        <h5 style="display:inline;">Let's break down this expression:
+            <br><br>&nbsp;&nbsp;&nbsp; &nbsp;    •The elements <img src="assets/images/x1y1.png"> represent our training set.
+	        <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        - Each <img src="assets/images/xi.png"> represents a point/vector (not a vector component)
+	        <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        - Each <img src="assets/images/yi.png"> represents a label.
             <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;            •Blue/red, coded as +1/-1.
-            <br><br>&nbsp;&nbsp;&nbsp; &nbsp;    •In general, we will classify data based on the value of the product p=w^T⋅x_i
-            <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        -For p>0, the x_i is above w and we classify the example as blue (see illustration).
-            <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        -For p"<"0 we classify the point as red (for p=0 we are undecided, assume it doesn’t happen). 
+            <br><br>&nbsp;&nbsp;&nbsp; &nbsp;    •In general, we will classify data based on the value of the product <img src="assets/images/mult.png">
+            <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        -For p&gt0, the <img src="assets/images/xi.png"> is above w and we classify the example as blue (see illustration).
+            <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        -For p&lt0 we classify the point as red (for p=0 we are undecided, assume it doesn’t happen). 
             <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;    •I[mistake on〖 x〗_i ] is an indicator function: returns 1 for false classification, else 0.
 	        <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        -Effectively that means our sum will count only false classifications.
             <br><br>&nbsp;&nbsp;&nbsp; &nbsp;    •Now, look at the overall expression:
-            <br><br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;       -If a blue example is classified as red: y_i=+1, w_T⋅x_i"<"0. So, we get:
-            <br><br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;                               y_i⋅(w^T⋅x_i )  "<" 0 
+            <br><br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;       -If a blue example is classified as red: <img src="assets/images/yiplus1.png">
+, w_T⋅x_i&lt0. So, we get:
+            <br><br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <img src="assets/images/yiwt.png">
             <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        We want our loss function to increase following a misclassification, so we need to reverse the sign – that leads to the final expression we see in the sum.  
             <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;        -As 'homework', the reader is encouraged to work out how the same expression applies correctly when a red is classified as blue.
             <br><br>The L(w) we now have is a real valued function of two variables and can be optimized as such. A w for which L decreases represents an improved classifier over the training set.
@@ -145,9 +150,14 @@
     </section>
     <section class="section" id="DL4">
         <br>
+        <h2>how to optimaize</h2>
         <h5>
-            -The optimization process itself will be the focus of the next few chapters 
-            <br>[paragraph about how the optimization process works]
+           The optimization process itself will be the focus of the next few chapters; it will be briefly presented here to complete the example. After we've established how the definition of L(w) allows us to properly assess the performance of our classifier, our task is to find its minimum.  
+            <br>Since L(w) is not structured as 'standard' real valued function, obtaining a closed expression for that w would be too complicated. Instead, we would have to work gradually – starting with some random w and work iteratively towards w values for which L decreases. If our current point is w, we can identify the direction at which L  decreases most rapidly from w by considering it gradient – ∇L(w). The gradient points in the direction of steepest ascent, so moving in the opposite direction will lead us in the direction of steepest descent.
+            <br> In the following demonstration, at every step we perform the following calculation:
+            <br><img src="assets/images/wtplus1.png">
+            <br> Where <img src="assets/images/lwt.png"> – is the 𝑡-th term the 𝐿 sum and ,<img src="assets/images/lwt.png">,is the learning rate, which we will discuss in more detail over the next chapters. 
+            <br>Applying this calculation repeatedly results in:
         </h5>
     </section>
 </div>
