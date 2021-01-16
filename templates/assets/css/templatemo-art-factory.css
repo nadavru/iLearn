@@ -1205,9 +1205,32 @@ course
 --------------------------------------------- 
 */
 #course {
-  padding: 25px 10%;
-  border-bottom: 1px solid #eee;
+	line-height: 200%;
+  padding: 20px 10%;
+      font-weight: 400;
 
+}
+#course2 {
+	line-height: 200%;
+	    font-weight: 400;
+	padding: 20px 10%;
+	color: white;
+ background: linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0088e8', endColorstr='#0088e8', GradientType=1 );
+}
+#course3 {
+	line-height: 200%;
+	    font-weight: 400;
+  padding: 20px 10%;
+
+}
+#course4 {
+	line-height: 200%;
+	    font-weight: 400;
+	padding: 20px 10%;
+	color: white;
+  background: linear-gradient( 135deg, rgba(0, 136, 232, 1) 0%, rgba(0, 182, 198, 1) 0%, rgba(0, 136, 232, 1) 100% );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0088e8', endColorstr='#0088e8', GradientType=1 );
 }
 
 /* 
