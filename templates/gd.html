@@ -43,9 +43,8 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="index.html">Home</a></li>
-                        <li class="scroll-to-section"><a href="#course">Machine Learning?</a></li>
-                        <li class="scroll-to-section"><a href="#course2">Applications</a></li>
-                        <li class="scroll-to-section"><a href="#course3">Timeline</a></li>
+                        <li class="scroll-to-section"><a href="#course2">Overview</a></li>
+                        <li class="scroll-to-section"><a href="#course">step size</a></li>
                         <li class="submenu">
                             <a href="javascript:;">Introduction</a>
                             <ul>
@@ -88,59 +87,40 @@
 
 <!-- ***** Features Big Item Start ***** -->
 
-<section id="course">
-    <h2 align="center">What is Deep Learning?</h2>
+<section id="course2">
     <br>
-        <div class="row">
-            <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
-                <h5> <br><br><br>Deep learning is an artificial intelligence (AI) function that imitates the workings of the human brain in processing data and creating patterns for use in decision making. Deep learning is a subset of machine learning in artificial intelligence that has networks capable of learning unsupervised from data that is unstructured or unlabeled. Also known as deep neural learning or deep neural network.
-                </h5>
-            </div>
-            <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                <img src="assets/images/DeepLearning.png" class="rounded img-fluid d-block mx-auto" alt="App">
-            </div>
-        </div>
+               <center> <h2>Overview</h2></center>
+                <h5>we are now ready to present Gradient Descent (GD) in more detail. GD is the most basic optimization algorithm; most ML-related optimizations rely on some variant of GD. As noted in the previous section, the gradient points in the direction of steepest descent, and thus reversed gradient points in the direction of steepest descent. To illustrate this, run the following demonstration:               </h5>
+                <iframe src="https://i-learn-ml.oa.r.appspot.com/Rosenbrock/" width="100%" height="700" scrolling="no"> </iframe>
+                <h5>One can easily observe that the arrows in this demo point exactly 'downhill' from wherever we are on the surface – this is the direction of the gradient, and this is we calculated those arrows to for this illustration. </h5>
         <br>
 </section>
-    <section id="course2">
-    <h2 align="center">Applications of Deep Learning</h2>
+    <section class="section" id="course">
         <br>
-        <div class="row">
-            <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
+        <br>
+        <center><h2>Step size</h2></center>
+        <br>
+
                 <h5>
-                    <br><br><br>A few years ago, we would’ve never imagined deep learning applications to bring us self driving cars and virtual assistants like Alexa, Siri and Google Assistant. But today, these creations are part of our everyday life. Deep Learning continues to fascinate us with its endless possibilities such as fraud detection and pixel restoration. Let us further understand the applications of deep learning across industries.
+                   So, if we already have an exact mathematical expression of the for direction of steepest descent from current point w_t, why didn't we calculate the expression:
                 </h5>
-            </div>
-            <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                <img src="assets/images/aplicationsDeep.png" class="rounded img-fluid d-block mx-auto" alt="App">
-            </div>
-        </div>
-        <br>
+                <img src="assets/images/wt1wt.png">
+                <h5>
+                    In other words, why don't we simply take 'step size' coefficient of 1? The reason is that the size, rather than merely the direction, of the gradient at out current point may cause us to overshoot the target if we use this expression; it may place us at next stop may not even lead to a decrease in the loss function value.                </h5>
+            <img src="assets/images/madness.png">
+            <br><h5 style="text-align:center;">Figure 1: step size madness</h5><br> 
+            <h5>For example, the wild jumps from one end of the surface to the other we observe figure (1) are only the result of selecting a learning rate of 0.02, not even 1 as we've suggested. Let's reduce the step size dramatically and see what happens:</h5><br> 
+            <br>
+            <img src="assets/images/tempered.png">
+            <br><h5 style="text-align:center;">Figure 2: the better-tempered step size</h5><br> 
+            <h5>So how should the step size be selected? So far, we've only discussed constant step size. The index on the step size coefficient suggests that there are methods that calculate the step size every iteration according to certain criteria; we will address that concept later.</h5>
+            <h5>One question about the previous that we are still curious about – what does the descent over the loss function looks like on the actual surface of the loss function? The perceptron loss function we presented is a rather poor choice for visual demonstration, so let's solve the same classification problem with a different loss function – linear regression*:</h5>
+            <img src="assets/images/lwwt.png">
+            <div style="display:inline;">
+            <h5>(*) we scaled our data points, to make <img src="assets/images/wtx.png"> for the demonstration.</h5>
+            <div>
     </section>
-    <section id="course3">
-
-        <table>
-            <tr>
-                <img src="assets/images/timelineDeep.png" class="rounded img-fluid d-block mx-auto" alt="App">
-            </tr>
-        </table>
-
-    </section>
-    <section class="section" id="course4">
-        <br>
-        <h2 align="center">What helped machine learning develop right now?</h2>
-        <h5>
-            <br><br><br>
-            - Big Data : Larger Datasets, Easier Collection &Storage<br><br>
-            - Hardware : Graphics Processing Units (GPUs), Massively Parallelizable<br><br>
-            - Softawre : Improved Techniques, New Models,Toolboxes (such as TensorFlow)
-            <br><br><br><br><br>
-        </h5>
-    </section>
-
-
-
-
+ 
 
 
 
