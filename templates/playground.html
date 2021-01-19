@@ -43,18 +43,17 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="index.html">Home</a></li>
-                        <li class="scroll-to-section"><a href="#course">ML?</a></li>
-                        <li class="scroll-to-section"><a href="#course2">Usage</a></li>
-                        <li class="scroll-to-section"><a href="#course3">Timeline</a></li>
+                        <li class="scroll-to-section"><a href="#course2">Overview</a></li>
+                        <li class="scroll-to-section"><a href="#course">step size</a></li>
                         <li class="submenu">
-                            <a href="playground.html">Playground</a>
+                            <a href="#course4">Playground</a>
                             <ul>
-                                <li><a href="playground.html#Func=Gaussian">Gaussian</a></li>
-                                <li><a href="playground.html#Func=Beale">Beale</a></li>
-                                <li><a href="playground.html#Func=Himmelblau">Himmelblau</a></li>
-                                <li><a href="playground.html#Func=Rosenbrock">Rosenbrock</a></li>
-                                <li><a href="playground.html#Func=ABS">ABS</a></li>
-                                <li><a href="playground.html#Func=Rastrigin">Rastrigin</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Gaussian';changeFunc();document.getElementById('course4').scrollIntoView();">Gaussian</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Beale';changeFunc();document.getElementById('course4').scrollIntoView();">Beale</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Himmelblau';changeFunc();document.getElementById('course4').scrollIntoView();">Himmelblau</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Rosenbrock';changeFunc();document.getElementById('course4').scrollIntoView();">Rosenbrock</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='ABS';changeFunc();document.getElementById('course4').scrollIntoView();">ABS</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Rastrigin';changeFunc();document.getElementById('course4').scrollIntoView();">Rastrigin</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
@@ -99,62 +98,43 @@
 
 <!-- ***** Features Big Item Start ***** -->
 
-<section id="course">
-    <h2 align="center">What is Deep Learning?</h2>
+<section id="course2">
     <br>
-        <div class="row">
-            <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
-                <h5> <br><br><br>Deep learning is an artificial intelligence (AI) function that imitates the workings of the human brain in processing data and creating patterns for use in decision making. Deep learning is a subset of machine learning in artificial intelligence that has networks capable of learning unsupervised from data that is unstructured or unlabeled. Also known as deep neural learning or deep neural network.
-                </h5>
-            </div>
-            <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                <img src="assets/images/DeepLearning.png" class="rounded img-fluid d-block mx-auto" alt="App">
-            </div>
-        </div>
-        <br>
+    <center><h2>Playground</h2></center>
+    <br>
+
+    <h5>
+        choose which function you would like to try Gradient Descent on:
+
+        <select class="contact-field" id="Func" name="opt">
+            <option value="Gaussian">Gaussian</option>
+            <option value="Beale">Beale</option>
+            <option value="Himmelblau">Himmelblau</option>
+            <option value="Rosenbrock">Rosenbrock</option>
+            <option value="ABS">ABS</option>
+            <option value="Rastrigin">Rastrigin</option>
+        </select>
+        <button class="main-button" name="go" onclick="changeFunc()">GO</button>
+    </h5>
+    <iframe src="https://i-learn-ml.oa.r.appspot.com/Himmelblau/" width="100%" height="1000" scrolling="no" id="ifrm"> </iframe>
 </section>
-    <section id="course2">
-    <h2 align="center">Applications of Deep Learning</h2>
-        <br>
-        <div class="row">
-            <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
-                <h5>
-                    <br><br><br>A few years ago, we would’ve never imagined deep learning applications to bring us self driving cars and virtual assistants like Alexa, Siri and Google Assistant. But today, these creations are part of our everyday life. Deep Learning continues to fascinate us with its endless possibilities such as fraud detection and pixel restoration. Let us further understand the applications of deep learning across industries.
-                </h5>
-            </div>
-            <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                <img src="assets/images/aplicationsDeep.png" class="rounded img-fluid d-block mx-auto" alt="App">
-            </div>
-        </div>
-        <br>
-    </section>
-    <section id="course3">
 
-        <table>
-            <tr>
-                <img src="assets/images/timelineDeep.png" class="rounded img-fluid d-block mx-auto" alt="App">
-            </tr>
-        </table>
-
-    </section>
-    <section class="section" id="course4">
-        <br>
-        <h2 align="center">What helped machine learning develop right now?</h2>
-        <h5>
-            <br><br><br>
-            - Big Data : Larger Datasets, Easier Collection &Storage<br><br>
-            - Hardware : Graphics Processing Units (GPUs), Massively Parallelizable<br><br>
-            - Softawre : Improved Techniques, New Models,Toolboxes (such as TensorFlow)
-            <br><br><br><br><br>
-        </h5>
-    </section>
-
-
-
-
-
-
-
+<script>
+    var changeFunc= function(){
+        var url = "https://i-learn-ml.oa.r.appspot.com/";
+        var func = document.getElementById('Func').value;
+        var ifrm = document.getElementById('ifrm');
+        ifrm.src = url+func;
+    }
+    var hashParams = window.location.hash;
+    hashParams = hashParams.substr(1).split('&');// substr(1) to remove the `#`
+    for (var i = 0; i < hashParams.length; i++) {
+        var p = hashParams[i].split('=');
+        if (p[0]!= null) {
+            document.getElementById(p[0]).value = decodeURIComponent(p[1]);
+        }
+    }
+</script>
 
 <!-- jQuery -->
 <script src="assets/js/jquery-2.1.0.min.js"></script>
