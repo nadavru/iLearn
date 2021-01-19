@@ -46,6 +46,17 @@
                         <li class="scroll-to-section"><a href="#course2">Overview</a></li>
                         <li class="scroll-to-section"><a href="#course">step size</a></li>
                         <li class="submenu">
+                            <a href="#course4">Playground</a>
+                            <ul>
+                                <li><a href="javascript:document.getElementById('Func').value='Gaussian';changeFunc();document.getElementById('course4').scrollIntoView();">Gaussian</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Beale';changeFunc();document.getElementById('course4').scrollIntoView();">Beale</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Himmelblau';changeFunc();document.getElementById('course4').scrollIntoView();">Himmelblau</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Rosenbrock';changeFunc();document.getElementById('course4').scrollIntoView();">Rosenbrock</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='ABS';changeFunc();document.getElementById('course4').scrollIntoView();">ABS</a></li>
+                                <li><a href="javascript:document.getElementById('Func').value='Rastrigin';changeFunc();document.getElementById('course4').scrollIntoView();">Rastrigin</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
                             <a href="javascript:;">Introduction</a>
                             <ul>
                                 <li><a href="deepLearning.html">Deep Learning</a></li>
@@ -120,10 +131,39 @@
             <h5>(*) we scaled our data points, to make <img src="assets/images/wtx.png"> for the demonstration.</h5>
             <div>
     </section>
+<section class="section" id="course4">
+    <br>
+    <br>
+    <center><h2>Playground</h2></center>
+    <br>
+
+    <h5>
+       choose which function you would like to try Gradient Descent on:
+
+    <select class="contact-field" id="Func" name="opt">
+        <option value="Gaussian">Gaussian</option>
+        <option value="Beale">Beale</option>
+        <option value="Himmelblau">Himmelblau</option>
+        <option value="Rosenbrock">Rosenbrock</option>
+        <option value="ABS">ABS</option>
+        <option value="Rastrigin">Rastrigin</option>
+    </select>
+     <button class="main-button" name="go" onclick="changeFunc()">GO</button>
+    </h5>
+    <iframe src="https://i-learn-ml.oa.r.appspot.com/Himmelblau/" width="100%" height="700" scrolling="no" id="ifrm"> </iframe>
+</section>
  
 
 
+<script>
+    var changeFunc= function(){
+        var url = "https://i-learn-ml.oa.r.appspot.com/";
+        var func = document.getElementById('Func').value;
+        var ifrm = document.getElementById('ifrm');
+        ifrm.src = url+func;
+    }
 
+</script>
 
 <!-- jQuery -->
 <script src="assets/js/jquery-2.1.0.min.js"></script>
