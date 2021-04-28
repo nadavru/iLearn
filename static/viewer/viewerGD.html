@@ -70,8 +70,8 @@
 		<table>
 			<tr>
 				<td>
-					<button type="button" class="main-button" onclick="NextVec()">Next Step</button>
 					<button class="main-button" type="button" onclick="PrevVec()">Previous Step</button>
+					<button class="main-button" type="button" onclick="NextVec()">Next Step</button>
 				</td>
 
 			</tr>
@@ -349,7 +349,7 @@
 		}
 	};
 	// setting proxy:true allows interactive controls to override base position
-	var camera = mathbox.camera( { proxy: true, position: [4,2,4] } );
+	var camera = mathbox.camera( { proxy: true, position: [-4,2,-4] } );
 
 	 // save as variable to adjust later
     view = mathbox.cartesian(

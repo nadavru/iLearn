@@ -37,15 +37,15 @@
 <table>
     <tr>
         <td>
-            <button class="main-button" type="button" onclick="NextVec()">Next Step</button>
             <button class="main-button" type="button" onclick="PrevVec()">Previous Step</button>
+            <button class="main-button" type="button" onclick="NextVec()">Next Step</button>
         </td>
     </tr>
 </table>
 <form action="/{{func}}/" methhods=['POST']>
      <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate">
      <a> epochs: </a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs">
-     <button class="main-button" name="send" type="submit">GO</button>
+     <button class="main-button" name="send" type="submit">Apply</button>
 </form>
 </div>
 <script>
@@ -165,7 +165,7 @@
         }
     };
     // setting proxy:true allows interactive controls to override base position
-    var camera = mathbox.camera( { proxy: true, position: [4,2,4] } );
+    var camera = mathbox.camera( { proxy: true, position: [-4,2,-4] } );
 
     // save as variable to adjust later
     view = mathbox.cartesian(
