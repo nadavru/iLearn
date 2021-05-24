@@ -58,5 +58,5 @@ def runGaussian(x=None,y=None,epochs=50,lr=0.5,opt=SGD):
     G = Gaussian(sizes, grid_x,grid_y,epochs=epochs,x=x,y=y,lr=lr,opt=opt)
     Xs, Ys, Zs = G.train()
     src = G.display()
-    return src
+    return src, G.error
 
