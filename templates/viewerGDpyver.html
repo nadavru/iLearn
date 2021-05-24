@@ -82,7 +82,7 @@
     </tr>
 </table>
 <form action="/{{func}}/" methhods=['POST']>
-    <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate">
+    <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate" disabled id="lr">
     <a> x: </a><input class="contact-field" id = "x" name="x" placeholder="x" disabled>
     <a> y: </a><input class="contact-field" id = "y" name="y" placeholder="y" disabled>
     <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs" type="number" min="1" step="1">
@@ -92,6 +92,7 @@
         <option class="st" value="Newton">Newton</option>
     </select>
     <button class="main-button" name="send" type="submit">Apply</button><br>
+    <a> learning rate: </a><input type="range" min="1" max="100" value="0" class="slider" id="lr_slider" step="0.05">
     <a> x: </a><input type="range" min="1" max="100" value="0" class="slider" id="x_slider" step="0.05">
     <a> y: </a><input type="range" min="1" max="100" value="0" class="slider" id="y_slider" step="0.05">
 </form>
@@ -127,6 +128,7 @@
 		points=[];
 		curves=[];
         var hashParams = "{{pyString}}";
+        var maxlr = "{{maxLR}}";
         if(hashParams.length != 0) {
             hashParams = hashParams.split('$');// substr(1) to remove the `#`
             for (var i = 0; i < hashParams.length; i++) {
@@ -175,7 +177,10 @@
 					emit(x, zFunc(x, y), y);
 				}
 		);
-        document.getElementById("x_slider").setAttribute("max",xMax);
+        document.getElementById("lr_slider").setAttribute("max",maxlr);
+        document.getElementById("lr_slider").setAttribute("min",0);
+        document.getElementById("lr_slider").setAttribute("step",(maxlr/1000));
+		document.getElementById("x_slider").setAttribute("max",xMax);
         document.getElementById("x_slider").setAttribute("min",xMin);
         document.getElementById("y_slider").setAttribute("max",yMax);
         document.getElementById("y_slider").setAttribute("min",yMin);
@@ -329,7 +334,9 @@
 							color: "white", width: 8, end: true, visible: true, points: vecData
 						}));
 					}
-                camera.set("position",[((0-f_start[0])/4),(f_start[2]*2),((0-f_start[1])/4)]);
+                var zval= max(zMax/2,f_start(f_start[2]*2))
+                camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
+                camera.set("lookAt",[f_start[0],f_start[2],f_start[1]]);
 			}
 		}
 			displayTrace = !displayTrace;
@@ -374,7 +381,9 @@
 
 						}
 					}
-            camera.set("position",[((0-f_start[0])/4),(f_start[2]*2),((0-f_start[1])/4)]);
+            var zval= max(zMax/2,f_start(f_start[2]*2))
+            camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
+            camera.set("lookAt",[f_start[0],f_start[2],f_start[1]]);
 			}
 			displayTrace = !displayTrace;
 		if(currCurveNum==0){
@@ -489,12 +498,18 @@
 		points: curveData,
 		color:"#000000", shaded:false, fill:false, lineX:true, lineY:true, visible:false, width:2
 	});
+    var slidelr = document.getElementById("lr_slider");
     var slidex = document.getElementById("x_slider");
     var slidey = document.getElementById("y_slider");
+    var lrtext = document.getElementById("lr");
     var xtext = document.getElementById("x");
     var ytext = document.getElementById("y");
+    lrtext.value = slidelr.value;
     xtext.value = slidex.value;
     ytext.value = slidey.value;
+    slidelr.oninput = function() {
+        lrtext.value = this.value;
+    }
     slidex.oninput = function() {
         xtext.value = this.value;
     }
