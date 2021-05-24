@@ -42,5 +42,5 @@ def runRosenbrock(lr=0.1**5, opt=SGD, epochs=100, x=5, y=-5):
     Ro = Rosenbrock(lr=lr, opt=opt, grid_x=10, grid_y=10, epochs=epochs, x=x, y=y)
     Xs, Ys, Zs = Ro.train()
     src = Ro.display()
-    return src
+    return src, Ro.error
     

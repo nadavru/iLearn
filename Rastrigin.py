@@ -37,4 +37,4 @@ def runRastrigin(lr=0.0001,epochs=50, opt=SGD, x=None, y=None):
     Ra = Rastrigin(lr=lr,epochs=epochs,opt=opt,x=x,y=y)
     Xs, Ys, Zs = Ra.train()
     src = Ra.display()
-    return src
+    return src, Ra.error
