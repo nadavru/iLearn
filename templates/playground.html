@@ -127,7 +127,7 @@
     hashParams = hashParams.substr(1).split('&');// substr(1) to remove the `#`
     for (var i = 0; i < hashParams.length; i++) {
         var p = hashParams[i].split('=');
-        if (p[0]!= null) {
+        if (p[0]!= null && p[0]!= "") {
             document.getElementById(p[0]).value = decodeURIComponent(p[1]);
         }
     }
