@@ -291,6 +291,7 @@
 			currVecNum++;
 		}
 		counter=0;
+        var f_start;
 		for (var i =0 ;i<points.length;i++){
 			if(points[i].length <= currVecNum+1)
 				counter++;
@@ -307,6 +308,7 @@
 					if(i==0){
                     document.getElementById("x").value = start[0];
                     document.getElementById("y").value = start[1];
+                        f_start = start;
 					}
 					vecData = view.array({
 						width: 1, items: 2, channels: 3,
@@ -321,7 +323,7 @@
 							color: "white", width: 8, end: true, visible: true, points: vecData
 						}));
 					}
-                camera.set("position",[-3,2,-3]);
+                camera.set("position",[(0-f_start[0]),f_start[2],(0-f_start[1])]);
 			}
 		}
 			displayTrace = !displayTrace;
@@ -346,6 +348,7 @@
 			window.alert("This is the first step");
 		else{
 			currVecNum--;
+			var f_start;
 					for (var i =0 ;i<points.length;i++) {
 						if (points[i].length <= currVecNum + 1) {
 						} else {
@@ -354,6 +357,7 @@
 							if(i==0){
 								document.getElementById("x").value = start[0];
 								document.getElementById("y").value = start[1];
+								f_start = start;
 							}
 							var vecData = view.array({
 								width: 1, items: 2, channels: 3,
@@ -364,7 +368,7 @@
 
 						}
 					}
-            camera.set("position",[-3,2,-3]);
+            camera.set("position",[(0-f_start[0]),f_start[2],(0-f_start[1])]);
 			}
 			displayTrace = !displayTrace;
 		if(currCurveNum==0){
