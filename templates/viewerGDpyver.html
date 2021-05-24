@@ -337,8 +337,9 @@
                 var zval= Math.min(zMax/2,f_start(f_start[2]*1.4))
                 camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
 			}
+            displayTrace = !displayTrace;
 		}
-			displayTrace = !displayTrace;
+
 
 		if (points.length== counter){
 			window.alert("no more steps");
