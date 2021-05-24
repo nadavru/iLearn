@@ -85,8 +85,11 @@ class Himmelblau(Trainer):
         src = src[:-1]
         
         return src
-def runHimmelblau(opt=Newton,epochs=50,lr=0.001, x=4, y=4):
+def runHimmelblau(opt=SGD,epochs=50,lr=0.001, x=4, y=4):
     Hi = Himmelblau(opt=opt,epochs=epochs, lr=lr, x=x, y=y)
     Xs, Ys, Zs = Hi.train()
-    src = Hi.display()
+    if((opt == SGD) or (opt == MomentumSGD)):
+        src = Hi.display()
+    if(opt==Newton):
+        src = Hi.display2()
     return src

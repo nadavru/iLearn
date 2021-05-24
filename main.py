@@ -40,7 +40,7 @@ def showBeale():
 
 @app.route('/Himmelblau/',methods=['POST','GET'])
 def showHimmelblau():    
-    learningRate = float(request.args.get("lr", 0.001))
+    learningRate = float(request.args.get("lr", 0.01))
     x = float(request.args.get("x", 4))
     y = float(request.args.get("y", 4))
     epochs = int(request.args.get("epochs", 50))
@@ -51,8 +51,8 @@ def showHimmelblau():
 @app.route('/Rosenbrock/',methods=['POST','GET'])
 def showRosenbrock():    
     learningRate = float(request.args.get("lr", 0.1**5))
-    x = float(request.args.get("x", 5))
-    y = float(request.args.get("y", -5))
+    x = float(request.args.get("x", 3))
+    y = float(request.args.get("y", -3))
     epochs = int(request.args.get("epochs", 100))
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
