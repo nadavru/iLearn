@@ -35,4 +35,4 @@ def runBeale(x=4,y=4,epochs=50,opt=MomentumSGD,lr=0.000001):
     Be = Beale(opt=opt,epochs=epochs, lr=lr, x=x, y=y)
     Xs, Ys, Zs = Be.train()
     src = Be.display()
-    return src
+    return src, Be.error

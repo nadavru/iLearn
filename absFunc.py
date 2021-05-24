@@ -50,4 +50,4 @@ def runABS(opt=SGD,epochs=50, lr=1, x=10, y=0.5):
     Abs = Absfunc(opt=SGD,epochs =epochs,lr=1, x=10, y=0.5)
     Xs, Ys, Zs = Abs.train()
     src = Abs.display()
-    return src
+    return src, Abs.error
