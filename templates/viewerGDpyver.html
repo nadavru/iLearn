@@ -83,18 +83,18 @@
 </table>
 <form action="/{{func}}/" methhods=['POST']>
     <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate" disabled id="lr">
+    <input type="range" min="1" max="100" value="0" class="slider" id="lr_slider" step="0.05">
     <a> x: </a><input class="contact-field" id = "x" name="x" placeholder="x" disabled>
+    <input type="range" min="1" max="100" value="0" class="slider" id="x_slider" step="0.05">
     <a> y: </a><input class="contact-field" id = "y" name="y" placeholder="y" disabled>
+    <input type="range" min="1" max="100" value="0" class="slider" id="y_slider" step="0.05"><br>
     <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs" type="number" min="1" step="1">
     <select class="contact-field" id="SGD" name="opt">
         <option class="st" value="SGD">GD</option>
         <option class="st" value="MomentumSGD">MomentumSGD</option>
         <option class="st" value="Newton">Newton</option>
     </select>
-    <button class="main-button" name="send" type="submit">Apply</button><br>
-    <a> learning rate: </a><input type="range" min="1" max="100" value="0" class="slider" id="lr_slider" step="0.05">
-    <a> x: </a><input type="range" min="1" max="100" value="0" class="slider" id="x_slider" step="0.05">
-    <a> y: </a><input type="range" min="1" max="100" value="0" class="slider" id="y_slider" step="0.05">
+    <button class="main-button" name="send" type="submit">Apply</button>
 </form>
 </div>
 <script>
@@ -334,7 +334,7 @@
 							color: "white", width: 8, end: true, visible: true, points: vecData
 						}));
 					}
-                var zval= max(zMax/2,f_start(f_start[2]*2))
+                var zval= (zMax/2,f_start(f_start[2]*2))
                 camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
                 camera.set("lookAt",[f_start[0],f_start[2],f_start[1]]);
 			}
