@@ -88,13 +88,8 @@ class Himmelblau(Trainer):
 def runHimmelblau(opt=SGD,epochs=50,lr=0.001, x=4, y=4):
     Hi = Himmelblau(opt=opt,epochs=epochs, lr=lr, x=x, y=y)
     Xs, Ys, Zs = Hi.train()
-<<<<<<< HEAD
     if((opt == SGD) or (opt == MomentumSGD)):
         src = Hi.display()
     if(opt==Newton):
         src = Hi.display2()
-    return src
-=======
-    src = Hi.display()
     return src, Hi.error
->>>>>>> 8fb2966ac5b38a04fedfe430347aff654c959b83

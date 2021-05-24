@@ -27,7 +27,7 @@ def showGaussian():
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
     pyString,error_val = runGaussian(lr=learningRate,x=x,y=y,opt=opt,epochs=epochs)
-    return render_template("viewerGDpyver.html",epochs=epochs,pyString = pyString,error_val = error_val ,opt = optString,lr = learningRate, func = "Gaussian")
+    return render_template("viewerGDpyver.html",epochs=epochs,pyString = pyString ,opt = optString,lr = learningRate, func = "Gaussian")
 
 @app.route('/Beale/',methods=['POST','GET'])
 def showBeale():    
