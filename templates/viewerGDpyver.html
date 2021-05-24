@@ -334,9 +334,8 @@
 							color: "white", width: 8, end: true, visible: true, points: vecData
 						}));
 					}
-                var zval= (zMax/2,f_start(f_start[2]*2))
+                var zval= Math.min(zMax/2,f_start(f_start[2]*1.4))
                 camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
-                camera.set("lookAt",[f_start[0],f_start[2],f_start[1]]);
 			}
 		}
 			displayTrace = !displayTrace;
@@ -381,9 +380,8 @@
 
 						}
 					}
-            var zval= max(zMax/2,f_start(f_start[2]*2))
+            var zval= Math.min(zMax/2,f_start(f_start[2]*1.4))
             camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
-            camera.set("lookAt",[f_start[0],f_start[2],f_start[1]]);
 			}
 			displayTrace = !displayTrace;
 		if(currCurveNum==0){
