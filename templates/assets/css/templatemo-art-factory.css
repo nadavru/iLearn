@@ -1574,6 +1574,7 @@ preloader
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
   height: 1vh; /* Specified height */
+  border-radius: 0.2hv;
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.9; /* Set transparency (for mouse-over effects on hover) */
@@ -1592,6 +1593,7 @@ preloader
   appearance: none;
   width: 1vh; /* Set a specific slider handle width */
   height: 1vh; /* Slider handle height */
+  border-radius: 50%;
   background: #FFFFFF; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
@@ -1599,6 +1601,7 @@ preloader
 .slider::-moz-range-thumb {
   width: 1vh; /* Set a specific slider handle width */
   height: 1vh; /* Slider handle height */
+  border-radius: 50%;
   background: #FFFFFF; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
