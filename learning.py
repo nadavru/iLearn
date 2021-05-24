@@ -12,6 +12,7 @@ class Trainer:
         self.x_cur = 2*grid_x*np.random.random_sample()-grid_x if x is None else x
         self.y_cur = 2*grid_y*np.random.random_sample()-grid_y if y is None else y
         self.epochs=epochs
+        self.error = 0 # no error
 
         x = np.linspace(-grid_x, grid_x, 1000)
         y = np.linspace(-grid_y, grid_y, 1000)
@@ -33,7 +34,8 @@ class Trainer:
             #print(d)
             self.x_cur, self.y_cur = self.opt.step(d, d2)
             if self.x_cur<-self.grid_x or self.x_cur>self.grid_x or self.y_cur<-self.grid_y or self.y_cur>self.grid_y:
-              break
+                  self.error = -1
+                  break
 
             self.Xs.append(self.x_cur)
             self.Ys.append(self.y_cur)
