@@ -1573,8 +1573,8 @@ preloader
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  height: 1vh; /* Specified height */
-  border-radius: 0.2hv;
+  height: 2vh; /* Specified height */
+  border-radius: 0.4hv;
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.9; /* Set transparency (for mouse-over effects on hover) */
@@ -1591,16 +1591,16 @@ preloader
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  width: 1vh; /* Set a specific slider handle width */
-  height: 1vh; /* Slider handle height */
+  width: 2vh; /* Set a specific slider handle width */
+  height: 2vh; /* Slider handle height */
   border-radius: 50%;
   background: #FFFFFF; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
-  width: 1vh; /* Set a specific slider handle width */
-  height: 1vh; /* Slider handle height */
+  width: 2vh; /* Set a specific slider handle width */
+  height: 2vh; /* Slider handle height */
   border-radius: 50%;
   background: #FFFFFF; /* Green background */
   cursor: pointer; /* Cursor on hover */
