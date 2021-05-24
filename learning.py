@@ -33,7 +33,6 @@ class Trainer:
             #print(d)
             self.x_cur, self.y_cur = self.opt.step(d, d2)
             if self.x_cur<-self.grid_x or self.x_cur>self.grid_x or self.y_cur<-self.grid_y or self.y_cur>self.grid_y:
-              print("Learning rate too high, abort. Please try smaller lr or bigger grid.")
               break
 
             self.Xs.append(self.x_cur)
