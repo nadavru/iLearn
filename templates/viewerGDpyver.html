@@ -91,7 +91,9 @@
         <option class="st" value="MomentumSGD">MomentumSGD</option>
         <option class="st" value="Newton">Newton</option>
     </select>
-    <button class="main-button" name="send" type="submit">Apply</button>
+    <button class="main-button" name="send" type="submit">Apply</button><br>
+    <a> x: </a><input type="range" min="1" max="100" value="0" class="slider" id="x_slider">
+    <a> y: </a><input type="range" min="1" max="100" value="0" class="slider" id="y_slider">
 </form>
 </div>
 <script>
@@ -173,6 +175,10 @@
 					emit(x, zFunc(x, y), y);
 				}
 		);
+        document.getElementById("x_slider").setAttribute("max",xMax);
+        document.getElementById("x_slider").setAttribute("min",xMin);
+        document.getElementById("y_slider").setAttribute("max",yMax);
+        document.getElementById("y_slider").setAttribute("min",yMin);
 		if (curves.length!=0){
 			newton_curve.set("visible",true);
 			var cFunc = Parser.parse(curves[0].toLowerCase()).toJSFunction(['x', 'y']);
@@ -308,7 +314,7 @@
 					if(i==0){
                     document.getElementById("x").value = start[0];
                     document.getElementById("y").value = start[1];
-                        f_start = start;
+                        f_start = end;
 					}
 					vecData = view.array({
 						width: 1, items: 2, channels: 3,
@@ -357,7 +363,7 @@
 							if(i==0){
 								document.getElementById("x").value = start[0];
 								document.getElementById("y").value = start[1];
-								f_start = start;
+								f_start = end;
 							}
 							var vecData = view.array({
 								width: 1, items: 2, channels: 3,
@@ -483,6 +489,19 @@
 		points: curveData,
 		color:"#000000", shaded:false, fill:false, lineX:true, lineY:true, visible:false, width:2
 	});
+    var slidex = document.getElementById("x_slider");
+    var slidey = document.getElementById("y_slider");
+    var xtext = document.getElementById("x");
+    var ytext = document.getElementById("y");
+    xtext.value = slidex.value;
+    ytext.value = slidey.value;
+    slidex.oninput = function() {
+        xtext.value = this.value;
+    }
+    slidey.oninput = function() {
+        ytext.value = this.value;
+    }
+
 	updateGraphFunc();
 	</script>
 </body>
