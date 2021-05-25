@@ -333,7 +333,11 @@
 							color: "white", width: 8, end: true, visible: true, points: vecData
 						}));
 					}
-                var zval= Math.min(zMax/2,f_start[2]);
+                if((zMax-zMin)>0){
+                    var zval= Math.min((zMax-zMin)/2,f_start[2]);
+                }else{
+                    var zval= Math.max((zMax-zMin)/2,f_start[2]);
+                }
                 camera.set("position",[((0-f_start[0])/4)*1.6,zval,((0-f_start[1])/4)]);
                 camera.set("lookat",[f_start[0],f_start[2],f_start[1]]);
 			}
@@ -380,7 +384,11 @@
 
 						}
 					}
-            var zval= Math.min(zMax/2,f_start[2]);
+            if((zMax-zMin)>0){
+                var zval= Math.min((zMax-zMin)/2,f_start[2]);
+            }else{
+                var zval= Math.max((zMax-zMin)/2,f_start[2]);
+            }
             camera.set("position",[((0-f_start[0])/4)*1.6,zval,((0-f_start[1])/4)]);
             camera.set("lookat",[f_start[0],f_start[2],f_start[1]]);
 			}
