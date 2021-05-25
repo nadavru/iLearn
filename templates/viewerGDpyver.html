@@ -83,11 +83,11 @@
 </table>
 <form action="/{{func}}/" methhods=['POST']>
     <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate" id="lr" size="8" readonly>
-    <input type="range" min="1" max="100" value="0" class="slider" id="lr_slider" step="0.05">
+    <input type="range" min="1" max="100" value="0" class="slider" id="lr_slider" step="any">
     <a> x: </a><input class="contact-field" id = "x" name="x" placeholder="x" size="8" readonly>
-    <input type="range" min="1" max="100" value="0" class="slider" id="x_slider" step="0.05">
+    <input type="range" min="1" max="100" value="0" class="slider" id="x_slider" step="any">
     <a> y: </a><input class="contact-field" id = "y" name="y" placeholder="y" size="8" readonly>
-    <input type="range" min="1" max="100" value="0" class="slider" id="y_slider" step="0.05">
+    <input type="range" min="1" max="100" value="0" class="slider" id="y_slider" step="any">
     <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs" type="number" min="1" step="1" size="8">
     <select class="contact-field" id="SGD" name="opt">
         <option class="st" value="SGD">GD</option>
@@ -179,7 +179,6 @@
 		);
         document.getElementById("lr_slider").setAttribute("max",maxlr);
         document.getElementById("lr_slider").setAttribute("min",0);
-        document.getElementById("lr_slider").setAttribute("step",(maxlr/1000));
 		document.getElementById("x_slider").setAttribute("max",xMax);
         document.getElementById("x_slider").setAttribute("min",xMin);
         document.getElementById("y_slider").setAttribute("max",yMax);
@@ -334,7 +333,12 @@
 							color: "white", width: 8, end: true, visible: true, points: vecData
 						}));
 					}
-                var zval= Math.min(zMax/2,f_start[2]*1.4);
+                if(zMax>0){
+                    var zval= Math.min(zMax/2,f_start[2]*1.4);
+                }else{
+                    var zval= Math.max(zMax/2,f_start[2]*1.4);
+                }
+
                 camera.set("position",[((0-f_start[0])/4)*1.6,zval,((0-f_start[1])/4)]);
                 camera.set("lookat",[f_start[0],f_start[2],f_start[1]]);
 			}
@@ -381,7 +385,11 @@
 
 						}
 					}
-            var zval= Math.min(zMax/2,f_start[2]*1.4);
+            if(zMax>0){
+                var zval= Math.min(zMax/2,f_start[2]*1.4);
+            }else{
+                var zval= Math.max(zMax/2,f_start[2]*1.4);
+            }
             camera.set("position",[((0-f_start[0])/4)*1.6,zval,((0-f_start[1])/4)]);
             camera.set("lookat",[f_start[0],f_start[2],f_start[1]]);
 			}
