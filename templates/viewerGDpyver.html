@@ -83,11 +83,11 @@
 </table>
 <form action="/{{func}}/" methhods=['POST']>
     <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate" id="lr" size="8" readonly>
-    <input type="range" min="1" max="100" value="0" class="slider" id="lr_slider" step="any">
+    <input type="range" min="1" max="100" value="{{lr}}" class="slider" id="lr_slider" step="any">
     <a> x: </a><input class="contact-field" id = "x" name="x" placeholder="x" size="8" readonly>
-    <input type="range" min="1" max="100" value="0" class="slider" id="x_slider" step="any">
+    <input type="range" min="1" max="100" value="{{x}}" class="slider" id="x_slider" step="any">
     <a> y: </a><input class="contact-field" id = "y" name="y" placeholder="y" size="8" readonly>
-    <input type="range" min="1" max="100" value="0" class="slider" id="y_slider" step="any">
+    <input type="range" min="1" max="100" value="{{y}}" class="slider" id="y_slider" step="any">
     <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs" type="number" min="1" step="1" size="8">
     <select class="contact-field" id="SGD" name="opt">
         <option class="st" value="SGD">GD</option>
