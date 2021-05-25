@@ -76,8 +76,8 @@ def showABS():
 @app.route('/Rastrigin/',methods=['POST','GET'])
 def showRastrigin():    
     learningRate = float(request.args.get("lr", 0.0001))
-    x = float(request.args.get("x", None))
-    y = float(request.args.get("y", None))
+    x = float(request.args.get("x", 10))
+    y = float(request.args.get("y", 10))
     epochs = int(request.args.get("epochs", 50))
     optString = request.args.get("opt", "SGD") 
     opt = castToOpt(optString)
