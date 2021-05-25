@@ -306,41 +306,39 @@
 		for (var i =0 ;i<points.length;i++){
 			if(points[i].length <= currVecNum+1)
 				counter++;
-			else {
-                var start = points[i][currVecNum].split(',');
-                var end = points[i][currVecNum + 1].split(',');
-                var vecData = view.array({
-                    width: 1, items: 2, channels: 3,
-                    data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
-                });
-                vec[i].set("points", vecData);
-                start = points[i][currVecNum - 1].split(',');
-                end = points[i][currVecNum].split(',');
-                if (i == 0) {
+			else{
+				var start = points[i][currVecNum].split(',');
+				var end = points[i][currVecNum+1].split(',');
+				var vecData = view.array({
+					width: 1, items: 2, channels: 3,
+					data: [ [parseFloat(start[0]),parseFloat(start[2]),parseFloat(start[1])],[parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])] ],
+				});
+				vec[i].set("points", vecData);
+					start = points[i][currVecNum - 1].split(',');
+					end = points[i][currVecNum].split(',');
+					if(i==0){
                     document.getElementById("x").value = start[0];
                     document.getElementById("y").value = start[1];
-                    f_start = end;
-                }
-                vecData = view.array({
-                    width: 1, items: 2, channels: 3,
-                    data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
-                });
-                if (displayTrace) {
-                    trace.push(view.vector({
-                        color: "black", width: 8, end: true, visible: true, points: vecData
-                    }));
-                    displayTrace = !displayTrace;
-                } else {
-                    trace.push(view.vector({
-                        color: "white", width: 8, end: true, visible: true, points: vecData
-                    }));
-                    displayTrace = !displayTrace;
-                }
-                var zval = Math.min(zMax / 2, f_start(f_start[2] * 1.4))
-                camera.set("position", [((0 - f_start[0]) / 4), zval, ((0 - f_start[1]) / 4)]);
-            }
+                        f_start = end;
+					}
+					vecData = view.array({
+						width: 1, items: 2, channels: 3,
+						data: [[parseFloat(start[0]), parseFloat(start[2]), parseFloat(start[1])], [parseFloat(end[0]), parseFloat(end[2]), parseFloat(end[1])]],
+					});
+					if (displayTrace) {
+						trace.push(view.vector({
+							color: "black", width: 8, end: true, visible: true, points: vecData
+						}));
+					}else{
+						trace.push(view.vector({
+							color: "white", width: 8, end: true, visible: true, points: vecData
+						}));
+					}
+                var zval= Math.min(zMax/2,f_start[2]*1.4);
+                camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
+			}
 		}
-
+			displayTrace = !displayTrace;
 
 		if (points.length== counter){
 			window.alert("no more steps");
@@ -379,12 +377,13 @@
 							});
 							vec[i].set("points", vecData);
 							trace.pop().remove();
-                            displayTrace = !displayTrace;
+
 						}
 					}
-            var zval= Math.min(zMax/2,f_start(f_start[2]*1.4))
+            var zval= Math.min(zMax/2,f_start[2]*1.4);
             camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
 			}
+			displayTrace = !displayTrace;
 		if(currCurveNum==0){
 		}
 		else{
