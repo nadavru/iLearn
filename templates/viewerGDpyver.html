@@ -335,7 +335,8 @@
 						}));
 					}
                 var zval= Math.min(zMax/2,f_start[2]*1.4);
-                camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
+                camera.set("position",[((0-f_start[0])/4)*1.2,zval,((0-f_start[1])/4)*1.2]);
+                camera.set("lookAt",[f_start[0],f_start[2],f_start[1]])
 			}
 		}
 			displayTrace = !displayTrace;
@@ -381,7 +382,8 @@
 						}
 					}
             var zval= Math.min(zMax/2,f_start[2]*1.4);
-            camera.set("position",[((0-f_start[0])/4),zval,((0-f_start[1])/4)]);
+            camera.set("position",[((0-f_start[0])/4)*1.2,zval,((0-f_start[1])/4)*1.2]);
+            camera.set("lookAt",[f_start[0],f_start[2],f_start[1]])
 			}
 			displayTrace = !displayTrace;
 		if(currCurveNum==0){
