@@ -7,7 +7,7 @@ from svm import runSVM
 from Rastrigin import runRastrigin
 from absFunc import runABS
 from Beale import runBeale
-
+from NN import runNN
 
 def castToOpt(optString):
     if(optString == "Newton"):
@@ -88,7 +88,7 @@ def showNN():
     learningRate = float(request.args.get("lr", 0.1))
     epochs = int(request.args.get("epochs", 50000))   
     pyString,error_val = runNN(hidden_dims="2,4,3", activation="Tanh", with_b=0,lr=learningRate, f_string="x*e^(-x^2-y^2)", epochs=epochs, batch_size=500)
-    return render_template("viewerGDpyver.html",pyString = pyString,lr = learningRate,epochs=epochs)
+    return render_template("viewerNetworkpyver.html",pyString = pyString,lr = learningRate,epochs=epochs)
 
 @app.route('/SVM/',methods=['POST','GET'])
 def showSVM():   
