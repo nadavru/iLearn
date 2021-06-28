@@ -82,6 +82,7 @@
         </tr>
     </table>
     <form action="/{{func}}/" methhods=['POST']>
+        <a>function: </a><input class="contact-field" name="function" value ="{{func}}" placeholder="function" id="function">
         <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate" id="lr" size="8" readonly>
         <input type="range" min="1" max="100" value="{{lr}}" class="slider" id="lr_slider" step="any">
         <a> first layer: </a><input class="contact-field" id = "fl" name="fl" placeholder="fl" size="4" readonly>
@@ -90,12 +91,17 @@
         <input type="range" min="1" max="10" value="{{sl}}" class="slider" id="sl_slider" step="1">
         <a> third layer: </a><input class="contact-field" id = "tl" name="tl" placeholder="tl" size="4" readonly>
         <input type="range" min="1" max="10" value="{{tl}}" class="slider" id="tl_slider" step="1">
-        <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs" type="number" min="1" step="1" size="8">
-        <select class="contact-field" id="SGD" name="opt">
-            <option class="st" value="SGD">GD</option>
-            <option class="st" value="MomentumSGD">MomentumSGD</option>
-            <option class="st" value="Newton">Newton</option>
+        <a> with_b: </a><select class="contact-field" id="b" name="b">
+            <option class="st" value="false">without_b</option>
+            <option class="st" value="true">with_b</option>
         </select>
+        <a> activation function: </a><select class="contact-field" id="activation" name="activation">
+            <option class="st" value="tanh">tanh</option>
+            <option class="st" value="relu">relu</option>
+            <option class="st" value="sigmoid">sigmoid</option>
+        </select>
+        <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs" type="number" min="1" step="1" size="8">
+        <a>epochs:</a><input class="contact-field" id = "batch" value ="{{batch}}" name="batch" placeholder="batch size" type="number" min="1" step="1" size="8">
         <button class="main-button" name="send" type="submit">Apply</button>
     </form>
 </div>
