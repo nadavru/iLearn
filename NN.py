@@ -1,28 +1,22 @@
 import numpy as np
-from abc import abstractmethod
 import math
 
 class Module():
 
-    @abstractmethod
     def forward(self, x):
         pass
     
-    @abstractmethod
     def backward(self, loss):
         pass
         
-    @abstractmethod
     def train(sel):
         pass
     
 class Loss():
 
-    @abstractmethod
     def forward(self, x, y):
         pass
     
-    @abstractmethod
     def backward(self):
         pass
 
