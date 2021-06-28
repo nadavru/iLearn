@@ -83,6 +83,12 @@ def showRastrigin():
     opt = castToOpt(optString)
     pyString,error_val = runRastrigin(lr=learningRate,x=x,y=y,opt=opt,epochs=epochs)
     return render_template("viewerGDpyver.html",pyString = pyString,x=x,y=y,maxLR= 0.0001, error_val = error_val ,epochs=epochs,opt = optString,lrVal = learningRate,func = "Rastrigin")
+@app.route('/NN/',methods=['POST','GET'])
+def showNN(): 
+    learningRate = float(request.args.get("lr", 0.1))
+    epochs = int(request.args.get("epochs", 50000))   
+    pyString,error_val = runNN(hidden_dims="2,4,3", activation="Tanh", with_b=0,lr=learningRate, f_string="x*e^(-x^2-y^2)", epochs=epochs, batch_size=500)
+    return render_template("viewerGDpyver.html",pyString = pyString,lr = learningRate,epochs=epochs)
 
 @app.route('/SVM/',methods=['POST','GET'])
 def showSVM():   
@@ -95,13 +101,6 @@ def showSVM():
     except:
         epochs = 30
     return render_template("viewerSVMpyver.html",pyString = runSVM(lr=learningRate,epochs = epochs),epochs = epochs,lr = learningRate,func = "SVM")
-
-@app.route('/Newton/',methods=['POST','GET'])
-
- 
-
-
-
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
