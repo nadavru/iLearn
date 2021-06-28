@@ -82,18 +82,26 @@
     </tr>
 </table>
 <form action="/{{func}}/" methhods=['POST']>
-    <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate" id="lr" size="8" readonly>
-    <input type="range" min="1" max="100" value="{{lr}}" class="slider" id="lr_slider" step="any">
+    <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lrVal}}" placeholder="learning rate" id="lr" size="8" readonly>
+    <input type="range"  max="100" value="{{lrVal}}" class="slider" id="lr_slider" step="any">
     <a> x: </a><input class="contact-field" id = "x" name="x" placeholder="x" size="8" readonly>
-    <input type="range" min="1" max="100" value="{{x}}" class="slider" id="x_slider" step="any">
+    <input type="range"  max="100" value="{{x}}" class="slider" id="x_slider" step="any">
     <a> y: </a><input class="contact-field" id = "y" name="y" placeholder="y" size="8" readonly>
-    <input type="range" min="1" max="100" value="{{y}}" class="slider" id="y_slider" step="any">
+    <input type="range"  max="100" value="{{y}}" class="slider" id="y_slider" step="any">
     <a>epochs:</a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs" type="number" min="1" step="1" size="8">
     <select class="contact-field" id="SGD" name="opt">
-        <option class="st" value="SGD">GD</option>
-        <option class="st" value="MomentumSGD">MomentumSGD</option>
-        <option class="st" value="Newton">Newton</option>
-    </select>
+        <script>
+        var versionPlayground = "{{versionPlayground}}";
+        if(versionPlayground != "Newton"){
+            document.write("<select class=\"contact-field\" id=\"SGD\" name=\"opt\">");
+            document.write("<option class=\"st\" value=\"SGD\">GD</option>");
+            document.write("<option class=\"st\" value=\"MomentumSGD\">MomentumSGD</option>");
+            document.write("</select>")
+        }
+        else{
+            document.write("<input type=\"text\" value=\"Newton\" />");
+        }
+        </script>
     <button class="main-button" name="send" type="submit">Apply</button>
 </form>
 </div>

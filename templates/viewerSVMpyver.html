@@ -43,8 +43,8 @@
     </tr>
 </table>
 <form action="/{{func}}/" methhods=['POST']>
-     <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate">
-     <a> epochs: </a><input class="contact-field" id = "epochs" value ="{{epochs}}" name="epochs" placeholder="epochs">
+     <a> learning rate: </a><input class="contact-field" type = "number" step="0.000001" min = 0 max=30 name="lr" value ="{{lr}}" placeholder="learning rate">
+     <a> epochs: </a><input class="contact-field" id = "epochs" type = "number"  min =0 max = 300 value ="{{epochs}}" name="epochs" placeholder="epochs">
      <button class="main-button" name="send" type="submit">Apply</button>
 </form>
 </div>
