@@ -136,7 +136,7 @@ class NN():
         self.criterion = MSELoss()
         self.F = Function(f_string)
         self.batch = np.random.rand(batch_size, 2) * 4 - 2
-        self.test = np.random.rand(200, 2) * 4 - 2
+        self.test = np.random.rand(3, 2) * 4 - 2
         self.test = (self.test*1000).astype(int)/1000
         self.epochs = epochs
         self.indexes = [int(i*self.epochs/num_of_epochs)-1 for i in range(1,num_of_epochs+1)]\
