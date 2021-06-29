@@ -90,12 +90,14 @@ def showNN():
     fl = int(request.args.get("fl", 2))     
     sl = int(request.args.get("sl", 4))      
     tl = int(request.args.get("tl", 3))      
-    with_b = int(request.args.get("with_b", 0))
+    with_b = 0
+    if(str(request.args.get("b", "true")) == "true"):
+        with_b = 1
     batch_size = int(request.args.get("batch", 0))
     activation = str(request.args.get("activation", "Tanh"))
-    func=str(request.args.get("func","x*e^(-x^2-y^2)"))
-    pyString = runNN(hidden_dims=str(fl)+","+str(sl)+","+str(tl), activation=activation, with_b=with_b,lr=learningRate, f_string=func, epochs=epochs, batch_size=batch_size)
-    return render_template("viewerNetworkpyver.html",pyString = pyString,lr = learningRate,epochs=epochs,fl=fl,sl=sl,tl=tl)
+    func=str(request.args.get("function","x*e^(-x^2-y^2)"))
+    pyString = runNN(hidden_dims=str(fl)+","+str(sl)+","+str(tl), activation=activation, with_b=with_b,lr=learningRate, f_string="x*e^(-x^2-y^2)", epochs=epochs, batch_size= batch_size)
+    return render_template("viewerNetworkpyver.html",pyString = pyString,lr = learningRate,epochs=epochs,fl=fl,sl=sl,tl=tl,b=with_b,func=func,activation = activation,batch = batch_size)
     # return render_template("viewerNetworkpyver.html")
 
 @app.route('/SVM/',methods=['POST','GET'])

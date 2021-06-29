@@ -81,15 +81,15 @@
 
         </tr>
     </table>
-    <form action="/{{func}}/" methhods=['POST']>
+    <form methhods=['POST']>
         <a>function: </a><input class="contact-field" name="function" value ="{{func}}" placeholder="function" id="function">
         <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate" id="lr" size="8" readonly>
         <input type="range" min="1" max="100" value="{{lr}}" class="slider" id="lr_slider" step="any">
-        <a> first layer: </a><input class="contact-field" id = "fl" name="fl" placeholder="fl" size="4" readonly>
+        <a> first layer: </a><input class="contact-field" value="{{fl}}" id = "fl" name="fl" placeholder="fl" size="4" readonly>
         <input type="range" min="1" max="10" value="{{fl}}" class="slider" id="fl_slider" step="1">
-        <a> second layer: </a><input class="contact-field" id = "sl" name="sl" placeholder="sl" size="4" readonly>
+        <a> second layer: </a><input class="contact-field" value="{{sl}}" id = "sl" name="sl" placeholder="sl" size="4" readonly>
         <input type="range" min="1" max="10" value="{{sl}}" class="slider" id="sl_slider" step="1">
-        <a> third layer: </a><input class="contact-field" id = "tl" name="tl" placeholder="tl" size="4" readonly>
+        <a> third layer: </a><input class="contact-field" value="{{tl}}" id = "tl" name="tl" placeholder="tl" size="4" readonly>
         <input type="range" min="1" max="10" value="{{tl}}" class="slider" id="tl_slider" step="1">
         <br><a> with_b: </a><select class="contact-field" id="b" name="b">
             <option class="st" value="false">without_b</option>
