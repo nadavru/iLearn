@@ -271,7 +271,7 @@
                 data: arr,
 
             });
-            pointsGroup.set("points", temp);
+            displayedPoints.set("points", temp);
         }
     }
     // end of updateGraph function ==============================================================
@@ -292,7 +292,7 @@
                     width: 1, items: arr.length, channels: 3,
                     data: arr,
                 });
-                pointsGroup.set("points", temp);
+                displayedPoints.set("points", temp);
             }
         }else{
             window.alert("No more steps");
@@ -314,7 +314,7 @@
                     width: 1, items: arr.length, channels: 3,
                     data: arr,
                 });
-                pointsGroup.set("points", temp);
+                displayedPoints.set("points", temp);
             }
         }
     };
@@ -386,7 +386,7 @@
         width: 1, items: 0, channels: 3,
         data: [],
     });
-    pointsGroup = view.point({points: pointData, size:12, color: 'red'});
+    displayedPoints = view.point({points: pointData, size:12, color: 'red'});
 
 
     // create graph in two parts, because want solid and wireframe to be different colors
