@@ -139,7 +139,7 @@
         var hashParams = "{{pyString}}";
         var maxlr = "{{maxLR}}";
         if(hashParams.length != 0) {
-            hashParams = hashParams.split('$');// substr(1) to remove the `#`
+            hashParams = hashParams.split('&');// substr(1) to remove the `#`
             for (var i = 0; i < hashParams.length; i++) {
                 var p = hashParams[i].split('=');
                 if (p[0] == "points") {
