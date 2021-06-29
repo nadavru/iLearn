@@ -9,7 +9,7 @@ class Module():
     def backward(self, loss):
         pass
         
-    def train(sel):
+    def train(self):
         pass
     
 class Loss():
@@ -139,15 +139,14 @@ class NN():
         self.test = np.random.rand(200, 2) * 4 - 2
         self.test = (self.test*1000).astype(int)/1000
         self.epochs = epochs
-        self.indexes = [int(i*self.epochs/num_of_epochs)-1 for i in range(1,num_of_epochs+1)]\
-            if num_of_epochs<=self.epochs else [i for i in range(self.epochs)]
+        self.indexes = [int(i*self.epochs/num_of_epochs)-1 for i in range(1,num_of_epochs+1)] if num_of_epochs<=self.epochs else [i for i in range(self.epochs)]
         url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
         self.disp_url = url+f"xmax=2.1$xmin=-2.1$ymax=2.1$ymin=-2.1$func={f_string}$points="
     
     def add_points(self):
         predict = self.model.forward(self.test)
         predict = (predict*1000).astype(int)/1000
-		self.disp_url += f"{self.test[0,0]},{self.test[0,1]},{predict[0,0]}"
+        self.disp_url += f"{self.test[0,0]},{self.test[0,1]},{predict[0,0]}"
         for i in range(1, predict.shape[0]):
             self.disp_url += f"%{self.test[i,0]},{self.test[i,1]},{predict[i,0]}"
     

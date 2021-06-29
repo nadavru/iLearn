@@ -86,18 +86,17 @@ def showRastrigin():
 @app.route('/NN/',methods=['POST','GET'])
 def showNN(): 
     learningRate = float(request.args.get("lr", 0.1))
-    epochs = int(request.args.get("epochs", 50000))
-    fl = int(request.args.get("fl", 2))     
-    sl = int(request.args.get("sl", 4))      
-    tl = int(request.args.get("tl", 3))      
+    epochs = int(request.args.get("epochs", 50000))  
+    b= str(request.args.get("b", "true"))
     with_b = 0
     if(str(request.args.get("b", "true")) == "true"):
         with_b = 1
-    batch_size = int(request.args.get("batch", 0))
-    activation = str(request.args.get("activation", "Tanh"))
+    batch_size = int(request.args.get("batch", 500))
+    activation = str(request.args.get("activation", "tanh"))
     func=str(request.args.get("function","x*e^(-x^2-y^2)"))
-    pyString = runNN(hidden_dims=str(fl)+","+str(sl)+","+str(tl), activation=activation, with_b=with_b,lr=learningRate, f_string="x*e^(-x^2-y^2)", epochs=epochs, batch_size= batch_size).split("#")[1]
-    return render_template("viewerNetworkpyver.html",pyString = pyString,lr = learningRate,epochs=epochs,fl=fl,sl=sl,tl=tl,b=with_b,func=func,activation = activation,batch = batch_size)
+    layers= str(request.args.get("layers","2,4,3"))
+    pyString = runNN(hidden_dims=layers, activation=activation, with_b=with_b,lr=learningRate, f_string="x*e^(-x^2-y^2)", epochs=epochs, batch_size= batch_size).split("#")[1]
+    return render_template("viewerNetworkpyver.html",pyString = pyString,lr = learningRate,maxLR = 0.1,epochs=epochs,layers=layers,b=b,func=func,activation = activation,batch = batch_size)
     # return render_template("viewerNetworkpyver.html")
 
 @app.route('/SVM/',methods=['POST','GET'])

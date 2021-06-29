@@ -84,13 +84,8 @@
     <form methhods=['POST']>
         <a>function: </a><input class="contact-field" name="function" value ="{{func}}" placeholder="function" id="function">
         <a> learning rate: </a><input class="contact-field" name="lr" value ="{{lr}}" placeholder="learning rate" id="lr" size="8" readonly>
-        <input type="range" min="1" max="100" value="{{lr}}" class="slider" id="lr_slider" step="any">
-        <a> first layer: </a><input class="contact-field" value="{{fl}}" id = "fl" name="fl" placeholder="fl" size="4" readonly>
-        <input type="range" min="1" max="10" value="{{fl}}" class="slider" id="fl_slider" step="1">
-        <a> second layer: </a><input class="contact-field" value="{{sl}}" id = "sl" name="sl" placeholder="sl" size="4" readonly>
-        <input type="range" min="1" max="10" value="{{sl}}" class="slider" id="sl_slider" step="1">
-        <a> third layer: </a><input class="contact-field" value="{{tl}}" id = "tl" name="tl" placeholder="tl" size="4" readonly>
-        <input type="range" min="1" max="10" value="{{tl}}" class="slider" id="tl_slider" step="1">
+        <input type="range" min="0" max="100" value="{{lr}}" class="slider" id="lr_slider" step="any">
+        <a>layers: </a><input class="contact-field" name="layers" value ="{{layers}}" placeholder="expm 2,4,3 or 5,4,8,9,3" id="layers">
         <br><a> with_b: </a><select class="contact-field" id="b" name="b">
             <option class="st" value="false">without_b</option>
             <option class="st" value="true">with_b</option>
@@ -137,7 +132,8 @@
         points=[];
         curves=[];
         var hashParams = "{{pyString}}";
-        var maxlr = "{{maxLR}}";
+        var maxlr = {{maxLR}};
+        
         if(hashParams.length != 0) {
             hashParams = hashParams.split('$');// substr(1) to remove the `#`
             for (var i = 0; i < hashParams.length; i++) {
@@ -404,30 +400,11 @@
     });
 
     var slidelr = document.getElementById("lr_slider");
-    var slidefl = document.getElementById("fl_slider");
-    var slidesl = document.getElementById("sl_slider");
-    var slidetl = document.getElementById("tl_slider");
     var lrtext = document.getElementById("lr");
-    var fltext = document.getElementById("fl");
-    var sltext = document.getElementById("sl");
-    var tltext = document.getElementById("tl");
     lrtext.value = slidelr.value;
-    fltext.value = slidefl.value;
-    sltext.value = slidesl.value;
-    tltext.value = slidetl.value;
     slidelr.oninput = function() {
         lrtext.value = this.value;
     }
-    slidefl.oninput = function() {
-        fltext.value = this.value;
-    }
-    slidesl.oninput = function() {
-        sltext.value = this.value;
-    }
-    slidetl.oninput = function() {
-        tltext.value = this.value;
-    }
-
     updateGraphFunc();
 </script>
 </body>
