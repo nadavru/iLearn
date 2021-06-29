@@ -142,7 +142,7 @@ class NN():
         self.indexes = [int(i*self.epochs/num_of_epochs)-1 for i in range(1,num_of_epochs+1)]\
             if num_of_epochs<=self.epochs else [i for i in range(self.epochs)]
         url = "https://i-learn-ml.oa.r.appspot.com/viewer/viewerGD.html#"
-        self.disp_url = url+f"xmax=2.1&xmin=-2.1&ymax=2.1&ymin=-2.1&func={f_string}&points="
+        self.disp_url = url+f"xmax=2.1$xmin=-2.1$ymax=2.1$ymin=-2.1$func={f_string}$points="
     
     def add_points(self):
         predict = self.model.forward(self.test)
