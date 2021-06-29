@@ -269,6 +269,7 @@
             temp = view.array({
                 width: 1, items: arr.length, channels: 3,
                 data: arr,
+
             });
             pointsGroup.set("points", temp);
         }
@@ -318,6 +319,17 @@
         }
     };
 
+    // setting proxy:true allows interactive controls to override base position
+    var camera = mathbox.camera( { proxy: true, position: [-3,2,-3] } );
+
+    // save as variable to adjust later
+    view = mathbox.cartesian(
+        {
+            range: [[xMin, xMax], [yMin, yMax], [zMin,zMax]],
+            scale: [2,1,2],
+        }
+    );
+    
     // axes
     var xAxis = view.axis( {axis: 1, width: 8, detail: 40, color:"red"} );
     var xScale = view.scale( {axis: 1, divide: 10, nice:true, zero:true} );
