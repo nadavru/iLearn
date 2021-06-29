@@ -268,7 +268,8 @@
                 data: arr,
 
             });
-            displayedPoints.set("points", temp);
+            displayedPoints.remove();
+            displayedPoints = view.point({points: temp, size:12, color: 'red'});
         }
     }
     // end of updateGraph function ==============================================================
