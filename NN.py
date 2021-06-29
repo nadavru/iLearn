@@ -148,7 +148,7 @@ class NN():
         predict = self.model.forward(self.test)
         predict = (predict*1000).astype(int)/1000
         for i in range(predict.shape[0]):
-            self.disp_url += f"({self.test[i,0]},{self.test[i,1]},{predict[i,0]})"
+            self.disp_url += f"%{self.test[i,0]},{self.test[i,1]},{predict[i,0]}"
     
     def train(self):
         self.add_points()

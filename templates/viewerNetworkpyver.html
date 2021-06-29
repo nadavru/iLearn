@@ -145,10 +145,7 @@
                 if (p[0] == "points") {
                     points = p[1].split('|');
                     for (var j = 0; j < points.length; j++) {
-                        points[j] = points[j].split('(');
-                        for(var k=0; k<points[j].length;j++){
-                            points[j][k] = points[j][k].substring(0,5);
-                        }
+                        points[j] = points[j].split('%');
                     }
                 } else {
                         if (p[0] == "hide") {
